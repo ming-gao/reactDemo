@@ -1,9 +1,20 @@
 import React from "react";
+import Home from './pages/Home'
+import User from './pages/User'
+
+import {HashRouter, Route, Switch, Redirect} from'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <h1>This is React App.</h1>
+        <HashRouter>
+            <Switch>
+                <Route path="/home" component={Home} />
+                <Route path="/user" component={User} />
+                <Route exact path="/" component={Home} />
+                <Redirect to="/home"/>
+            </Switch>
+        </HashRouter>
     </div>
   );
 }
