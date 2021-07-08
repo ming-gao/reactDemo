@@ -1,0 +1,7 @@
+.M-table .ant-table-thead > tr > th,
+.M-table .ant-table-tbody > tr > td {
+  padding: 5px;
+}
+.M-table .ant-table-pagination.ant-pagination {
+  margin: 5px 0;
+}

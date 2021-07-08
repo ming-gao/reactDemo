@@ -5,10 +5,16 @@ import elementResizeEvent from 'element-resize-event'
 import 'echarts/lib/chart/pie';
 import 'echarts/lib/component/tooltip';
 import 'echarts/lib/component/title';
+import { GaugeChart } from 'echarts/charts';
+
 import {GridComponent} from 'echarts/components'
-import {BarChart} from 'echarts/charts';
+import { LineChart } from 'echarts/charts';
 import {LegendComponent} from 'echarts/components';
-import {GaugeChart} from 'echarts/charts';
+
+echarts.use([GaugeChart]);
+echarts.use([LegendComponent]);
+echarts.use([GridComponent]);
+echarts.use([LineChart]);
 
 export default class Echartsdemo extends Component {
     echartsInstance = echarts // echarts object
@@ -43,6 +49,7 @@ export default class Echartsdemo extends Component {
         elementResizeEvent(this.echartsElement, () => {
             echartObj.resize()
         })
+        console.log(window.animation)
     }
 
     bindEvents = (instance, events) => {

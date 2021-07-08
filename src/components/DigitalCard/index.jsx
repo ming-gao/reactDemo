@@ -10,13 +10,15 @@ class DigitalCard extends Component {
     state = {
         loading: true,
     };
-
+    addUser() {
+        this.props.history.push('/user')
+    }
     render() {
         return (
             <div className="M-digitalCard">
                 <Row gutter={16}>
                     <Col span={8}>
-                        <Card title={this.props.leftTitle} headStyle={{borderBottom:'0'}} extra={<Button size="small">{this.props.buttonText}</Button>} >
+                        <Card title={this.props.leftTitle} headStyle={{borderBottom:'0'}} extra={<Button size="small" onClick={() => {this.addUser()}}>{this.props.buttonText}</Button>} >
                             {this.props.left}
                         </Card>
                     </Col>

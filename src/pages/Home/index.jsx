@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 
 import './home.styl'
+import { Row, Col, Statistic } from 'antd';
 import DigitalCard from '../../components/DigitalCard'
-import Pie from '../../components/Pie'
-import Line from '../../components/Line'
-import Gauge from '../../components/Gauge'
 import Echartsdemo from '../../components/Echartsdemo'
+import Tablebasic from '../../components/Tablebasic'
+import Scrollmessage from '../../components/Scrollmessage'
+import { SoundOutlined } from '@ant-design/icons';
 
 const option = {
     series: [{
@@ -15,7 +16,8 @@ const option = {
         min: 0,
         max: 100,
         splitNumber: 5,
-        radius: "100%",
+        radius: "80%",
+        center: ['50%', '60%'],
         axisLine: {
             lineStyle: {
                 width: 6,
@@ -39,7 +41,7 @@ const option = {
         },
         axisTick: {
             length: 6,
-            distance:2,
+            distance: 2,
             lineStyle: {
                 color: 'auto',
                 width: 2
@@ -47,7 +49,7 @@ const option = {
         },
         splitLine: {
             length: 12,
-            distance:2,
+            distance: 2,
             lineStyle: {
                 color: 'auto',
                 width: 3
@@ -64,10 +66,14 @@ const option = {
         },
         grid: {
             height: "75%",
-            top:'10%'
+            top: '10%'
         },
         data: [{
             value: 70,
+            name: 'CPU使用率',
+            title: {
+                offsetCenter: [0, '-120%']
+            }
         }]
     }]
 
@@ -78,11 +84,16 @@ const optionsLine = {
         trigger: 'axis'
     },
     legend: {
-        data: ['最高气温', '最低气温']
+        data: ['活跃用户', '登录次数'],
+        orient: 'vertical',
+        right: '10',
+        top: '20%'
     },
     grid: {
         height: "75%",
-        top:'10%'
+        width:'80%',
+        top: '10%',
+        left: '50'
     },
     xAxis: {
         type: 'category',
@@ -92,7 +103,13 @@ const optionsLine = {
         type: 'value'
     },
     series: [{
-        data: [150, 230, 224, 218, 135, 147, 260],
+        name: '活跃用户',
+        data: [1, 2, 4, 8, 1, 7, 2],
+        type: 'line'
+    },
+    {
+        name: '登录次数',
+        data: [0, 3, 4, 8, 5, 7, 0],
         type: 'line'
     }]
 }
@@ -106,7 +123,7 @@ const optionPie = {
         {
             name: '访问来源',
             type: 'pie',
-            radius: ['50%','70%'],
+            radius: ['50%', '70%'],
             data: [
                 {value: 1048, name: '搜索引擎'},
                 {value: 735, name: '直接访问'},
@@ -126,10 +143,6 @@ const optionPie = {
 }
 
 class Home extends Component {
-    goUser() {
-        this.props.history.push('/user')
-    }
-
     componentDidMount() {
 
     }
@@ -149,23 +162,33 @@ class Home extends Component {
         }
         return (
             <div className='P-home'>
+                <Row className='P-scrollmessage'>
+                    <Col span={12} className="M-scrollmessage">
+                        <Row>
+                            <Col span={2} className='M-sound'><SoundOutlined style={{fontSize: '32px',color: '#fff'}}/></Col>
+                            <Col span={12} offset={1}><Scrollmessage/></Col>
+                        </Row>
+                    </Col>
+                    <Col span={11} offset={1} className="M-statistic">
+                        <div>累计访问平台</div>
+                        <div>登录平台次数<span>123</span></div>
+                        <div>访问资产次数<span>2133</span></div>
+                    </Col>
+                </Row>
+
                 <DigitalCard leftTitle="用户分布" buttonText="添加用户"
                              left={<Echartsdemo option={optionPie} onEvents={onEvents}/>}
-                             rightOne={<Echartsdemo option={option} onEvents={onEvents}/>}
-                             rightTwo={<Echartsdemo option={option} onEvents={onEvents}/>}
-                             rightThree={<Echartsdemo option={option} onEvents={onEvents}/>}/>
+                             rightOne={<Echartsdemo option={option} style={{height: '200px'}} onEvents={onEvents}/>}
+                             rightTwo={<Echartsdemo option={option} style={{height: '200px'}} onEvents={onEvents}/>}
+                             rightThree={<Echartsdemo option={option} style={{height: '200px'}} onEvents={onEvents}/>}/>
 
                 <DigitalCard leftTitle="资产接入" buttonText="添加资产" rightTitle="在线会话"
-                             left={<Echartsdemo option={optionPie} onEvents={onEvents}/>}/>
+                             left={<Echartsdemo option={optionPie} onEvents={onEvents}/>} right={<Tablebasic/>}/>
 
                 <DigitalCard leftTitle="授权统计" buttonText="授权资产" rightTitle="用户活跃程度(近一周)"
                              left={<Echartsdemo option={optionPie} onEvents={onEvents}/>}
                              right={<Echartsdemo option={optionsLine} onEvents={onEvents}/>}/>
 
-                <button onClick={() => {
-                    this.goUser()
-                }}>跳转至User页面
-                </button>
             </div>
         );
     }
