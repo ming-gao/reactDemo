@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-
+import { Router, Route, Link } from 'react-router'
 import './home.styl'
-import { Row, Col, Statistic } from 'antd';
+import { Row, Col, Statistic, Card } from 'antd';
 import DigitalCard from '../../components/DigitalCard'
 import Echartsdemo from '../../components/Echartsdemo'
 import Tablebasic from '../../components/Tablebasic'
 import Scrollmessage from '../../components/Scrollmessage'
-import { SoundOutlined } from '@ant-design/icons';
+import { SoundOutlined, createFromIconfontCN  } from '@ant-design/icons';
 
 const option = {
     series: [{
@@ -72,7 +72,7 @@ const option = {
             value: 70,
             name: 'CPU使用率',
             title: {
-                offsetCenter: [0, '-120%']
+                offsetCenter: [0, '-130%']
             }
         }]
     }]
@@ -142,6 +142,10 @@ const optionPie = {
     ]
 }
 
+const IconFont = createFromIconfontCN({
+    scriptUrl: '//at.alicdn.com/t/font_2662677_9x0hbl9my5.js',
+});
+
 class Home extends Component {
     componentDidMount() {
 
@@ -163,16 +167,21 @@ class Home extends Component {
         return (
             <div className='P-home'>
                 <Row className='P-scrollmessage'>
-                    <Col span={12} className="M-scrollmessage">
-                        <Row>
-                            <Col span={2} className='M-sound'><SoundOutlined style={{fontSize: '32px',color: '#fff'}}/></Col>
-                            <Col span={12} offset={1}><Scrollmessage/></Col>
-                        </Row>
+                    <Col span={15} className="M-scrollmessage">
+                        <Card>
+                            <Row>
+                                <Col span={2} className='M-sound'><SoundOutlined style={{fontSize: '22px',color: '#000'}}/></Col>
+                                <Col span={12}><Scrollmessage/></Col>
+                            </Row>
+                        </Card>
+
                     </Col>
-                    <Col span={11} offset={1} className="M-statistic">
-                        <div>累计访问平台</div>
-                        <div>登录平台次数<span>123</span></div>
-                        <div>访问资产次数<span>2133</span></div>
+                    <Col span={9}  className="M-statistic">
+                        <Card>
+                            <div>累计访问平台</div>
+                            <div className='card-cell'><span className='cell-title'>登录平台次数</span><span className='M-number'>123</span></div>
+                            <div className='card-cell'><span className='cell-title'>访问资产次数</span><span className='M-number'>2133</span></div>
+                        </Card>
                     </Col>
                 </Row>
 
@@ -180,14 +189,15 @@ class Home extends Component {
                              left={<Echartsdemo option={optionPie} onEvents={onEvents}/>}
                              rightOne={<Echartsdemo option={option} style={{height: '200px'}} onEvents={onEvents}/>}
                              rightTwo={<Echartsdemo option={option} style={{height: '200px'}} onEvents={onEvents}/>}
-                             rightThree={<Echartsdemo option={option} style={{height: '200px'}} onEvents={onEvents}/>}/>
+                             rightThree={<Echartsdemo option={option} style={{height: '200px'}} onEvents={onEvents}/>}
+                             history={this.props.history}/>
 
                 <DigitalCard leftTitle="资产接入" buttonText="添加资产" rightTitle="在线会话"
-                             left={<Echartsdemo option={optionPie} onEvents={onEvents}/>} right={<Tablebasic/>}/>
+                             left={<Echartsdemo option={optionPie} onEvents={onEvents}/>} right={<Tablebasic/>} history={this.props.history}/>
 
                 <DigitalCard leftTitle="授权统计" buttonText="授权资产" rightTitle="用户活跃程度(近一周)"
                              left={<Echartsdemo option={optionPie} onEvents={onEvents}/>}
-                             right={<Echartsdemo option={optionsLine} onEvents={onEvents}/>}/>
+                             right={<Echartsdemo option={optionsLine} onEvents={onEvents}/>} history={this.props.history}/>
 
             </div>
         );

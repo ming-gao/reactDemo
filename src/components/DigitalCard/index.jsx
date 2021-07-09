@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import { Card, Col, Row, Button,  Skeleton, Switch } from 'antd';
-// import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 
 import './digitalCard.styl'
-
-const { Meta } = Card;
 
 class DigitalCard extends Component {
     state = {
