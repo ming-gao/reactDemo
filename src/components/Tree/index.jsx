@@ -2,6 +2,7 @@ import React, {Component } from 'react';
 import PubSub from 'pubsub-js'
 import { Tree, Input } from 'antd';
 import './index.css'
+import PropTypes from 'prop-types';
 const { Search } = Input;
 
 const treeData = [
@@ -98,6 +99,12 @@ class Demo extends Component {
         searchValue: '',
         autoExpandParent: true,
     }
+    static propTypes={
+        isShowSearch:PropTypes.bool
+    }
+    static defaultProps={
+        isShowSearch:true
+    }
     onExpand = (expandedKeys) => {
         console.log('onExpand', expandedKeys);
         this.setState({expandedKeys: expandedKeys})
@@ -166,7 +173,7 @@ class Demo extends Component {
             });
         return (
             <div className='tree-container'>
-                <Search style={{ marginBottom: 8 }} allowClear={true} size='samll' placeholder="Search" onChange={this.onChange} />
+                {this.props.isShowSearch?(<Search style={{ marginBottom: 8 }} allowClear={true} size='small' placeholder="Search" onChange={this.onChange} />):null}
                 <Tree
                     showLine
                     checkable

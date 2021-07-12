@@ -1,0 +1,39 @@
+.ant-btn{
+    line-height:1
+}
+.ant-btn-sm {
+    border-radius: 3px;
+    padding: 3px 5px!important;
+}
+.ant-btn-sm{
+    font-size:12px
+}
+.tableContainer{
+
+}
+.tableTitle{
+    margin-bottom: 8px;
+}
+.tableTitle .ant-btn{
+    line-height:0 !important;
+}
+.tableTitle .deleteTips{
+    margin: 0 8px;
+}
+.ant-table-tbody > tr > td{
+    border-bottom:0
+}
+.ant-table-thead > tr >th{
+    padding:3px;
+    height:36px;
+
+}
+.ant-table-tbody > tr{
+    height:36px;
+}
+.ant-table-tbody > tr > td{
+    padding: 3px 0;
+}
+.tableTrEvenColor{
+    background-color:#f9faff;
+}

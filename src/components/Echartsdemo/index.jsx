@@ -45,7 +45,7 @@ export default class Echartsdemo extends Component {
         const echartObj = this.renderEchartDom()
         const onEvents = this.props.onEvents || {}
         this.bindEvents(echartObj, onEvents)
-        // on resize
+        // resize
         elementResizeEvent(this.echartsElement, () => {
             echartObj.resize()
         })
@@ -74,7 +74,7 @@ export default class Echartsdemo extends Component {
         this.renderEchartDom()
     }
 
-    // 3. 组件unmount时销毁相关echarts实例
+    // 组件unmount时销毁相关echarts实例
     componentWillUnmount() {
         if (this.echartsElement) {
             if (typeof elementResizeEvent.unbind === 'function') {
@@ -84,9 +84,9 @@ export default class Echartsdemo extends Component {
         }
     }
 
-    // 1. theme主题定制
+    // theme主题定制
     getEchartsInstance = () => this.echartsInstance.getInstanceByDom(this.echartsElement) || this.echartsInstance.init(this.echartsElement, this.props.theme);
-    // render the dom
+    // 渲染dom
     renderEchartDom = () => {
         // init the echart object
         const echartObj = this.getEchartsInstance()
@@ -101,7 +101,6 @@ export default class Echartsdemo extends Component {
         const style = this.props.style || {
             height: '200px'
         }
-        // for render
         return (
             <div
                 ref={(e) => { this.echartsElement = e }}
