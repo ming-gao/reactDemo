@@ -1,13 +1,25 @@
 import React, {Component} from 'react';
 import PubSub from 'pubsub-js'
-import {Button, Popconfirm, Table, Input, Space, Modal, message,} from 'antd';
+import {Button, Popconfirm, Table, Input, Space, Modal, message,Steps} from 'antd';
 import {Router, Route, Link} from 'react-router-dom'
 import 'antd/dist/antd.css'
 import Highlighter from 'react-highlight-words';
-import {SearchOutlined} from '@ant-design/icons';
+import {EyeInvisibleOutlined, EyeTwoTone ,SearchOutlined,PlusOutlined,DeleteOutlined,LockOutlined,UnlockOutlined,ImportOutlined,ExportOutlined,KeyOutlined,ToolOutlined,} from '@ant-design/icons';
 import './index.css'
 
-import Modalbasic from '../Modalbasic'
+const { Step } = Steps;
+
+const steps = [
+    {
+        title: '设置密码',
+        description:"密码长度6~20位，任意字母或数字组合",
+        content: <Input.Password placeholder="input password" className="M-steps-input" />,
+    },
+    {
+        title: '下载',
+        content: '处理完毕，可以进行下载',
+    }
+];
 
 const tableData = [];
 for (let i = 0; i < 10; i++) {
@@ -67,6 +79,8 @@ export default class Tableuser extends Component {
             pageSize: 0,
             searchText: '',
             searchedColumn: '',
+            visible: false,  //对话框可见性控制
+            current: 0 //步骤条进度控制
         };
     }
 
@@ -229,30 +243,109 @@ export default class Tableuser extends Component {
         console.log('selectedRowKeys changed: ', selectedRowKeys);
         this.setState({selectedRowKeys});
     };
+    lock=()=>{
+        if (this.state.selectedRowKeys.length===0){
+            message.warning('请选择要操作的对象');
+        }else{
+            message.success('执行成功');
+        }
 
+    }
+    unlock=()=>{
+        if (this.state.selectedRowKeys.length===0){
+            message.warning('请选择要操作的对象');
+        }
+    }
+    importcus=()=>{
+
+        message.warning('一级节点下不能添加数据');
+    }
+    exportcus=()=>{
+        this.setState({visible:true})
+    }
+    auth=()=>{
+        if (this.state.selectedRowKeys.length===0){
+            message.warning('请选择要操作的对象');
+        }
+    }
+    config=()=>{
+        if (this.state.selectedRowKeys.length===0){
+            message.warning('请选择要操作的对象');
+        }
+    }
+    ad=()=>{
+        message.warning('一级节点下不能添加数据');
+    }
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    };
+    handleCancel = () => {
+        this.setState({ visible: false });
+    };
     render() {
-        const {loading, selectedRowKeys, treeData} = this.state;
+        const {loading, selectedRowKeys, treeData,visible} = this.state;
         const rowSelection = {
             selectedRowKeys,
             onChange: this.onSelectChange,
         };
         const hasSelected = selectedRowKeys.length > 1;
+        const {current} = this.state
 
+        const next = () => {
+            this.setState({current:current+1})
+
+        };
         return (
             <div className='tableContainer'>
                 <div className='tableTitle'>
-                    <Modalbasic buttonData={this.props.buttonProps}/>
+                    <Button type="default" size="small" onClick={this.addColumn} icon={<PlusOutlined />} style={{backgroundColor: '#84C93C'}}><Link to='/addPage/'>添加</Link></Button>
                     <Popconfirm title="确认删除已选内容?" okText="是" cancelText="否"
                                 onConfirm={this.handleDeleteAll}>
-                        <Button type="primary" size="small" style={{marginRight: 8}} danger disabled={!hasSelected}
+                        <Button type="default" size="small" icon={<DeleteOutlined />} style={{backgroundColor: '#E67A5C'}} danger disabled={!hasSelected}
                                 loading={loading}>
                             删除
                         </Button>
                     </Popconfirm>
-                    <Button type="primary" size="small" onClick={this.addColumn}><Link to='/addPage/'>添加</Link></Button>
+                    <Button type="default" size="small" style={{backgroundColor: '#F2AE00'}} icon={<LockOutlined />} onClick={this.lock}>锁定</Button>
+                    <Button type="default" size="small" style={{backgroundColor: '#439EDB'}} icon={<UnlockOutlined />} onClick={this.unlock}>解锁</Button>
+                    <Button type="default" size="small" style={{backgroundColor: '#FBA1D0'}} icon={<ImportOutlined />} onClick={this.importcus}>导入</Button>
+                    <Button type="default" size="small" style={{backgroundColor: '#FBA1D0'}} icon={<ExportOutlined />} onClick={this.exportcus}>导出</Button>
+                    <Button type="default" size="small" style={{backgroundColor: '#30B29D'}} icon={<KeyOutlined />} onClick={this.auth}>授权</Button>
+                    <Button type="default" size="small" style={{backgroundColor: '#988DB6'}} icon={<ToolOutlined />} onClick={this.config}>策略绑定</Button>
+                    <Button type="default" size="small" style={{backgroundColor: '#188D8F'}} icon={<ImportOutlined />} onClick={this.ad}>AD域导入</Button>
                     <span className="deleteTips">
                         {hasSelected ? `选择了 ${selectedRowKeys.length} 项` : ''}
                     </span>
+                    <Modal
+                        visible={visible}
+                        title="导出"
+                        onCancel={this.handleCancel}
+                        footer={null}
+                    >
+                        <Steps current={current} className="M-steps">
+                            {steps.map(item => (
+                                <Step key={item.title} title={item.title} description={item.description} />
+                            ))}
+                        </Steps>
+                        <div className="steps-content">
+                            {steps[current].content}
+                            {current < steps.length - 1 && (
+                                <Button type="primary" size="middle " onClick={() => next()}>
+                                    设置
+                                </Button>
+                            )}
+                            {current === steps.length - 1 && (
+                                <Button type="primary" size="middle " onClick={() => message.success('下载成功!')}>
+                                    点击下载
+                                </Button>
+                            )}
+                        </div>
+                        <div className="steps-action">
+
+                        </div>
+                    </Modal>
                 </div>
                 <Table rowSelection={rowSelection} rowClassName={this.rowClassName} columns={this.columns}
                        pagination={{

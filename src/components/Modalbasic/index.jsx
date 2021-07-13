@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 import {Button, Modal, Space, message} from "antd";
 import { PlusOutlined,DeleteOutlined,LockOutlined,UnlockOutlined,ImportOutlined,ExportOutlined,KeyOutlined,ToolOutlined, } from '@ant-design/icons';
 
+import './modalbasic.styl'
+
 export default class Modalbasic extends Component {
     state = {
         visible: false,
         confirmLoading: false,
-        buttonData: []
+        buttonData: {},
+        test:'<PlusOutlined />'
     }
     showModal = (userMessage) => {
         message.warning(userMessage);
@@ -21,22 +24,21 @@ export default class Modalbasic extends Component {
     handleCancel = () => {
         this.setState({visible: false});
     };
+    componentWillMount() {
+
+    }
 
     componentDidMount() {
-        this.setState({buttonData: this.props.buttonData})
-        console.log(this.props.buttonData)
+        this.setState({buttonData: this.props})
+        console.log(this.props)
     }
 
     render() {
-        const {visible, confirmLoading} = this.state;
-        let Space = this.state.buttonData.map((item, index) => {
-                return <Button key={index} size='small' icon={React.createElement(item.icon)} type="primary" style={{backgroundColor: item.color}}>{item.name}</Button>
-            }
-        )
+        const {visible, confirmLoading} = this.state
+        const {color,name}=this.props
         return (
             <div>
-                {Space}
-
+                <Button className="M-button" onClick={this.showModal} size='small' icon={<PlusOutlined />} type="default" style={{backgroundColor: color}}>{name}</Button>
             </div>
         );
     }
