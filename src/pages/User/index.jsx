@@ -11,65 +11,65 @@ class User extends Component {
     buttonProps = [
         {
             key:'add',
-            name: 'add',
-            icon: '',
-            color: ''
+            name: '添加',
+            icon: 'PlusOutlined',
+            color: '#84C93C'
         },
         {
             key:'delete',
-            name: 'delete',
+            name: '删除',
             message: '请选择要删除的对象',
             modal: '确定是否删除？',
-            icon: '',
-            color: ''
+            icon: '<DeleteOutlined />',
+            color: '#E67A5C'
         },
         {
             key:'lock',
-            name: 'lock',
+            name: '锁定',
             message: '请选择要操作的对象',
-            icon: '',
-            color: ''
+            icon: '<LockOutlined />',
+            color: '#F2AE00'
         },
         {
             key:'unlock',
-            name: 'unlock',
+            name: '解锁',
             message: '请选择要操作的对象',
-            icon: '',
-            color: ''
+            icon: '<UnlockOutlined />',
+            color: '#439EDB'
         },
         {
             key:'importcus',
-            name: 'importcus',
+            name: '导入',
             message: "一级节点下不能添加数据",
-            icon: '',
-            color: ''
+            icon: '<ImportOutlined />',
+            color: '#FBA1D0'
         },
         {
             key:'exportcus',
-            name: 'exportcus',
-            icon: '',
-            color: ''
+            name: '导出',
+            icon: '<ExportOutlined />',
+            color: '#FBA1D0'
         },
         {
             key:'auth',
-            name: 'auth',
+            name: '批量授权',
             message: '请选择至少一个用户',
-            icon: '',
-            color: ''
+            icon: '<KeyOutlined />',
+            color: '#30B29D'
         },
         {
             key:'config',
-            name: 'config',
+            name: '策略绑定',
             message: '请选择至少一个用户',
-            icon: '',
-            color: ''
+            icon: '<ToolOutlined />',
+            color: '#988DB6'
         },
         {
             key:'ad',
-            name: 'ad',
+            name: 'AD域导入',
             message: "一级节点下不能添加数据",
-            icon: '',
-            color: ''
+            icon: '<ImportOutlined />',
+            color: '#188D8F'
         }]
 
     addColumn = (column) => {

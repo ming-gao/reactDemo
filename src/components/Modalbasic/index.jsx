@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {Button, Modal, Space, message} from "antd";
+import { PlusOutlined,DeleteOutlined,LockOutlined,UnlockOutlined,ImportOutlined,ExportOutlined,KeyOutlined,ToolOutlined, } from '@ant-design/icons';
 
 export default class Modalbasic extends Component {
     state = {
         visible: false,
         confirmLoading: false,
-        buttonData:[]
+        buttonData: []
     }
     showModal = (userMessage) => {
         message.warning(userMessage);
@@ -22,55 +23,21 @@ export default class Modalbasic extends Component {
     };
 
     componentDidMount() {
-        this.setState({buttonData:this.props.buttonData})
+        this.setState({buttonData: this.props.buttonData})
         console.log(this.props.buttonData)
     }
 
     render() {
         const {visible, confirmLoading} = this.state;
         let Space = this.state.buttonData.map((item, index) => {
-                return <Space key={index}>
-                    <Button type="primary" onClick={this.showModal(item.message)}>
-                        {item.name}
-                    </Button>
-                </Space>
+                return <Button key={index} size='small' icon={React.createElement(item.icon)} type="primary" style={{backgroundColor: item.color}}>{item.name}</Button>
             }
         )
-        let Modal = this.props.buttonData.map((item, index) => {
-            return <Modal
-                key={index}
-                title="执行动作"
-                visible={visible}
-                onOk={this.handleOk}
-                confirmLoading={confirmLoading}
-                onCancel={this.handleCancel}
-            >
-                <p>{item.modal}</p>
-            </Modal>
-
-        })
         return (
             <div>
                 {Space}
-                {Modal}
-            </div>
 
+            </div>
         );
     }
-
-    // render() {
-    //     let citys = this.state.citys.map((city) => {
-    //
-    //         return <span key={city}>{city}</span>
-    //
-    //     })
-    //
-    //     return (
-    //         <div>
-    //             {
-    //                 citys
-    //             }
-    //         </div>
-    //     );
-    // }
 }
