@@ -6,6 +6,7 @@ import DigitalCard from '../../components/DigitalCard'
 import Echartsdemo from '../../components/Echartsdemo'
 import Tablebasic from '../../components/Tablebasic'
 import Scrollmessage from '../../components/Scrollmessage'
+import Demo from "../Generators"
 import { SoundOutlined, createFromIconfontCN  } from '@ant-design/icons';
 
 const option = {
@@ -158,7 +159,12 @@ class Home extends Component {
     onChartLegendSelectChanged(param, echart) {
         console.log('onLegendSelect', param, echart)
     }
-
+    addUser=()=>{
+        this.props.history.push('/user')
+    }
+    toUser=()=>{
+        this.props.history.push('/adduser')
+    }
     render() {
         const onEvents = {
             click: this.onChartClick,
@@ -186,6 +192,7 @@ class Home extends Component {
                 </Row>
 
                 <DigitalCard leftTitle="用户分布" buttonText="添加用户"
+                             addUser={this.addUser}
                              left={<Echartsdemo option={optionPie} onEvents={onEvents}/>}
                              rightOne={<Echartsdemo option={option} style={{height: '200px'}} onEvents={onEvents}/>}
                              rightTwo={<Echartsdemo option={option} style={{height: '200px'}} onEvents={onEvents}/>}
@@ -193,12 +200,15 @@ class Home extends Component {
                              history={this.props.history}/>
 
                 <DigitalCard leftTitle="资产接入" buttonText="添加资产" rightTitle="在线会话"
+                             addUser={this.toUser}
                              left={<Echartsdemo option={optionPie} onEvents={onEvents}/>} right={<Tablebasic/>} history={this.props.history}/>
 
                 <DigitalCard leftTitle="授权统计" buttonText="授权资产" rightTitle="用户活跃程度(近一周)"
+                             addUser={this.toUser}
                              left={<Echartsdemo option={optionPie} onEvents={onEvents}/>}
                              right={<Echartsdemo option={optionsLine} onEvents={onEvents}/>} history={this.props.history}/>
 
+                <Demo/>
             </div>
         );
     }
