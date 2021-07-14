@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import PubSub from 'pubsub-js'
-import {Button, Popconfirm, Table, Input, Space, Modal, message,Steps} from 'antd';
+import {Button, Popconfirm, Table, Input, Space, Modal, message,Steps, Collapse } from 'antd';
 import {Router, Route, Link} from 'react-router-dom'
 import 'antd/dist/antd.css'
 import Highlighter from 'react-highlight-words';
 import {EyeInvisibleOutlined, EyeTwoTone ,SearchOutlined,PlusOutlined,DeleteOutlined,LockOutlined,UnlockOutlined,ImportOutlined,ExportOutlined,KeyOutlined,ToolOutlined,} from '@ant-design/icons';
+import ConditionalSearch from '../ConditionalSearch'
+
 import './index.css'
 
 const { Step } = Steps;
-
+const { Panel } = Collapse;
 const steps = [
     {
         title: '设置密码',
@@ -346,6 +348,7 @@ export default class Tableuser extends Component {
 
                         </div>
                     </Modal>
+                    <ConditionalSearch/>
                 </div>
                 <Table rowSelection={rowSelection} rowClassName={this.rowClassName} columns={this.columns}
                        pagination={{
