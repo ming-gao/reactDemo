@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
-import TableTest from '../../components/TableTest'
+import TableTest from "../../components/TableTest";
 import ConditionalSearch from '../../components/ConditionalSearch'
+import {Layout,Button,message,Popconfirm} from "antd";
 import {Link} from "react-router-dom";
-import {EditOutlined, EyeOutlined, KeyOutlined, PlayCircleOutlined, VideoCameraOutlined} from "@ant-design/icons";
-import {message} from "antd";
+import {
+    DeleteOutlined, EditOutlined, EyeOutlined, KeyOutlined, PlayCircleOutlined,
+    PlusOutlined, ToolOutlined, VideoCameraOutlined,
+} from "@ant-design/icons";
+import Demo from "../../components/Tree";
 
+const {Sider, Content} = Layout;
 const dataSource = [
     { userID: '湖北省', userName: 54406, userStatus: 4793, userGroup: 1457, phone: '2020-02-15 19:52:02',description: 1457, },
     { userID: '广东省', userName: 1294, userStatus: 409, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
@@ -53,40 +58,13 @@ const columns = [
     },
 ]
 
-
-
-class Adduser extends Component {
+class UserGroup extends Component {
     state = {
         selectedRowKeys: [],
         loading: false,
-        treeData: [],
-        total: 0,
-        pageNum: 1,
-        pageSize: 0,
-        searchText: '',
-        searchedColumn: '',
-        visible: false,  //对话框可见性控制
-        current: 0 //步骤条进度控制
-    };
-    lock=()=>{
-        if (this.state.selectedRowKeys.length===0){
-            message.warning('请选择要操作的对象');
-        }else{
-            message.success('执行成功');
-        }
-
     }
-    unlock=()=>{
-        if (this.state.selectedRowKeys.length===0){
-            message.warning('请选择要操作的对象');
-        }
-    }
-    importcus=()=>{
-
-        message.warning('一级节点下不能添加数据');
-    }
-    exportcus=()=>{
-        this.setState({visible:true})
+    addColumn = (column) => {
+        this.setState({column})
     }
     auth=()=>{
         if (this.state.selectedRowKeys.length===0){
@@ -98,37 +76,36 @@ class Adduser extends Component {
             message.warning('请选择要操作的对象');
         }
     }
-    ad=()=>{
-        message.warning('一级节点下不能添加数据');
-    }
-    showModal = () => {
-        this.setState({
-            visible: true,
-        });
-    };
-    handleCancel = () => {
-        this.setState({ visible: false });
-    };
     render() {
-        const {loading, selectedRowKeys, treeData,visible} = this.state;
-        const rowSelection = {
-            selectedRowKeys,
-            onChange: this.onSelectChange,
-        };
+        const {loading, selectedRowKeys} = this.state;
         const hasSelected = selectedRowKeys.length > 1;
-        const {current} = this.state
-
-        const next = () => {
-            this.setState({current:current+1})
-
-        };
         return (
             <div>
-                <ConditionalSearch/>
-                <TableTest/>
+                <Layout>
+                    <Sider><Demo isShowSearch={false} addColumn={this.addColumn}/></Sider>
+                    <Content>
+                        <div className='tableTitle'>
+                            <Button type="default" size="small" onClick={this.addColumn} icon={<PlusOutlined />} style={{backgroundColor: '#84C93C'}}><Link to='/addPage/'>添加</Link></Button>
+                            <Popconfirm title="确认删除已选内容?" okText="是" cancelText="否"
+                                        onConfirm={this.handleDeleteAll}>
+                                <Button type="default" size="small" icon={<DeleteOutlined />} style={{backgroundColor: '#E67A5C'}} danger disabled={!hasSelected}
+                                        loading={loading}>
+                                    删除
+                                </Button>
+                            </Popconfirm>
+                            <Button type="default" size="small" style={{backgroundColor: '#30B29D'}} icon={<KeyOutlined />} onClick={this.auth}>授权</Button>
+                            <Button type="default" size="small" style={{backgroundColor: '#988DB6'}} icon={<ToolOutlined />} onClick={this.config}>策略绑定</Button>
+                            <span className="deleteTips">
+                        {hasSelected ? `选择了 ${selectedRowKeys.length} 项` : ''}
+                    </span>
+                            <ConditionalSearch/>
+                        </div>
+                        <TableTest dataSource={dataSource} columns={columns}/>
+                    </Content>
+                </Layout>
             </div>
         );
     }
 }
 
-export default Adduser;
+export default UserGroup;

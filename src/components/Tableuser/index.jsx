@@ -301,55 +301,6 @@ export default class Tableuser extends Component {
         };
         return (
             <div className='tableContainer'>
-                <div className='tableTitle'>
-                    <Button type="default" size="small" onClick={this.addColumn} icon={<PlusOutlined />} style={{backgroundColor: '#84C93C'}}><Link to='/addPage/'>添加</Link></Button>
-                    <Popconfirm title="确认删除已选内容?" okText="是" cancelText="否"
-                                onConfirm={this.handleDeleteAll}>
-                        <Button type="default" size="small" icon={<DeleteOutlined />} style={{backgroundColor: '#E67A5C'}} danger disabled={!hasSelected}
-                                loading={loading}>
-                            删除
-                        </Button>
-                    </Popconfirm>
-                    <Button type="default" size="small" style={{backgroundColor: '#F2AE00'}} icon={<LockOutlined />} onClick={this.lock}>锁定</Button>
-                    <Button type="default" size="small" style={{backgroundColor: '#439EDB'}} icon={<UnlockOutlined />} onClick={this.unlock}>解锁</Button>
-                    <Button type="default" size="small" style={{backgroundColor: '#FBA1D0'}} icon={<ImportOutlined />} onClick={this.importcus}>导入</Button>
-                    <Button type="default" size="small" style={{backgroundColor: '#FBA1D0'}} icon={<ExportOutlined />} onClick={this.exportcus}>导出</Button>
-                    <Button type="default" size="small" style={{backgroundColor: '#30B29D'}} icon={<KeyOutlined />} onClick={this.auth}>授权</Button>
-                    <Button type="default" size="small" style={{backgroundColor: '#988DB6'}} icon={<ToolOutlined />} onClick={this.config}>策略绑定</Button>
-                    <Button type="default" size="small" style={{backgroundColor: '#188D8F'}} icon={<ImportOutlined />} onClick={this.ad}>AD域导入</Button>
-                    <span className="deleteTips">
-                        {hasSelected ? `选择了 ${selectedRowKeys.length} 项` : ''}
-                    </span>
-                    <Modal
-                        visible={visible}
-                        title="导出"
-                        onCancel={this.handleCancel}
-                        footer={null}
-                    >
-                        <Steps current={current} className="M-steps">
-                            {steps.map(item => (
-                                <Step key={item.title} title={item.title} description={item.description} />
-                            ))}
-                        </Steps>
-                        <div className="steps-content">
-                            {steps[current].content}
-                            {current < steps.length - 1 && (
-                                <Button type="primary" size="middle " onClick={() => next()}>
-                                    设置
-                                </Button>
-                            )}
-                            {current === steps.length - 1 && (
-                                <Button type="primary" size="middle " onClick={() => message.success('下载成功!')}>
-                                    点击下载
-                                </Button>
-                            )}
-                        </div>
-                        <div className="steps-action">
-
-                        </div>
-                    </Modal>
-                    <ConditionalSearch/>
-                </div>
                 <Table rowSelection={rowSelection} rowClassName={this.rowClassName} columns={this.columns}
                        pagination={{
                            pageSizeOptions: [5, 10, 20],

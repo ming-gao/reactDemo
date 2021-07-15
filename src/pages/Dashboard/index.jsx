@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Router, Route, Link } from 'react-router'
-import './home.styl'
 import { Row, Col, Statistic, Card } from 'antd';
 import DigitalCard from '../../components/DigitalCard'
 import Echartsdemo from '../../components/Echartsdemo'
@@ -8,6 +7,8 @@ import Tablebasic from '../../components/Tablebasic'
 import Scrollmessage from '../../components/Scrollmessage'
 import Demo from "../Generators"
 import { SoundOutlined, createFromIconfontCN  } from '@ant-design/icons';
+
+import './Dashboard.styl'
 
 const option = {
     series: [{
@@ -147,7 +148,7 @@ const IconFont = createFromIconfontCN({
     scriptUrl: '//at.alicdn.com/t/font_2662677_9x0hbl9my5.js',
 });
 
-class Home extends Component {
+class Dashboard extends Component {
     componentDidMount() {
 
     }
@@ -164,6 +165,9 @@ class Home extends Component {
     }
     toUser=()=>{
         this.props.history.push('/adduser')
+    }
+    toUserGroup=()=>{
+        this.props.history.push('/usergroup')
     }
     render() {
         const onEvents = {
@@ -204,7 +208,7 @@ class Home extends Component {
                              left={<Echartsdemo option={optionPie} onEvents={onEvents}/>} right={<Tablebasic/>} history={this.props.history}/>
 
                 <DigitalCard leftTitle="授权统计" buttonText="授权资产" rightTitle="用户活跃程度(近一周)"
-                             addUser={this.toUser}
+                             addUser={this.toUserGroup}
                              left={<Echartsdemo option={optionPie} onEvents={onEvents}/>}
                              right={<Echartsdemo option={optionsLine} onEvents={onEvents}/>} history={this.props.history}/>
 
@@ -214,4 +218,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Dashboard;
