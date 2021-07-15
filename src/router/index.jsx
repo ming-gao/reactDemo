@@ -8,7 +8,7 @@ import { //引入路由相关配置
 } from 'react-router-dom'
 //-------blog 自定义组件-------------------------
 
-import Main from '../pages/Layout'//222、设置为/ 的页面，整个页面结构都在这个文件，名字随便取
+import Main from '../pages/Layout'
 
 export default class Router extends Component {
     render() {
