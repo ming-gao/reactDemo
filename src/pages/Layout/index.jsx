@@ -1,7 +1,8 @@
 import React from "react";
-import { Layout, Menu } from 'antd';
+import {Layout, Menu, Breadcrumb } from 'antd';
 import {MenuUnfoldOutlined, MenuFoldOutlined, UserOutlined, VideoCameraOutlined, UploadOutlined,} from '@ant-design/icons';
 import { Route, Redirect, Switch,Link } from 'react-router-dom'
+import menuList from '../../config/menuConfig'
 import Dashboard from '../Dashboard'
 import Demo from '../Generators'
 import UserGroup from  '../UserGroup'
@@ -9,6 +10,7 @@ import User from '../User'
 import './index.styl'
 
 const { Header, Sider, Content } = Layout;
+const {SubMenu} = Menu
 
 class Main extends React.Component {
     state = {
@@ -20,58 +22,80 @@ class Main extends React.Component {
             collapsed: !this.state.collapsed,
         });
     };
-    handleChange=(string)=>{
-        // this.props.history.push(string)
+
+    getMenuNodes=(menuList)=>{
+        return menuList.map(item => {
+            if (!item.children){
+                return (
+                    <Menu.Item key={item.key} icon={<UserOutlined />} >
+                        <Link to={item.key}>
+                            {item.name}
+                        </Link>
+                    </Menu.Item>
+                )
+            } else {
+                return (
+                    <SubMenu key={item.key} icon={<UserOutlined />} title={item.name}>
+                        {
+                            this.getMenuNodes(item.children)
+                        }
+                    </SubMenu>
+                )
+            }
+        })
     }
+    onCollapse = collapsed => {
+        console.log(collapsed);
+        this.setState({ collapsed });
+    };
     render() {
+        const { collapsed } = this.state;
         return (
             <Layout>
-                <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+                <Header className="site-layout-background" >
                     <div className="logo" />
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                        <Menu.Item key="1" icon={<UserOutlined />} >
-                            <Link to="/dashboard">
-                                nav 1
-                            </Link>
-                        </Menu.Item>
-                        <Menu.Item key="2" icon={<VideoCameraOutlined />} o>
-                            <Link to="/demo">
-                                nav 2
-                            </Link>
-
-                        </Menu.Item>
-                        <Menu.Item key="3" icon={<UploadOutlined />} >
-                            <Link to="/usergroup">
-                                nav 3
-                            </Link>
-
-                        </Menu.Item>
-                    </Menu>
-                </Sider>
+                </Header>
                 <Layout className="site-layout">
-                    <Header className="site-layout-background" style={{ padding: 0 }}>
-                        {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                            className: 'trigger',
-                            onClick: this.toggle,
-                        })}
-                    </Header>
-                    <Content
-                        className="site-layout-background"
-                        style={{
-                            margin: '24px 16px',
-                            padding: 24,
-                            minHeight: 280,
-                        }}
-                    >
-                        <Switch>
-                            <Route path="/dashboard" component={Dashboard} />
-                            <Route path="/demo" component={Demo} />
-                            <Route path="/usergroup" component={UserGroup} />
-                            <Route path="/user" component={User} />
-
-                        </Switch>
-                        Content
-                    </Content>
+                    <Sider trigger={null} collapsible collapsed={collapsed} onCollapse={this.onCollapse} breakpoint='lg'>
+                        <div className="menu-fold" >
+                            {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                                className: 'trigger',
+                                onClick: this.toggle,
+                            })}
+                        </div>
+                        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}
+                              // style={{
+                              //     position: 'fixed',
+                              //     left: 0,
+                              //     overflow: "auto",
+                              //     width:"200px"
+                              // }}
+                        >
+                            {
+                                this.getMenuNodes(menuList)
+                            }
+                        </Menu>
+                    </Sider>
+                    <Layout>
+                        <Breadcrumb style={{ margin: '16px 0' }}>
+                            <Breadcrumb.Item>Home</Breadcrumb.Item>
+                            <Breadcrumb.Item>List</Breadcrumb.Item>
+                            <Breadcrumb.Item>App</Breadcrumb.Item>
+                        </Breadcrumb>
+                        <Content
+                            className="site-layout-background"
+                            style={{
+                                minHeight: 280,
+                            }}
+                        >
+                            <Switch>
+                                <Route path="/dashboard" component={Dashboard} />
+                                <Route path="/demo" component={Demo} />
+                                <Route path="/usergroup" component={UserGroup} />
+                                <Route path="/user" component={User} />
+                            </Switch>
+                        </Content>
+                    </Layout>
                 </Layout>
             </Layout>
         );

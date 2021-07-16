@@ -1,17 +1,23 @@
 .P-home
   background-color #F6F6F6
   .P-scrollmessage
-    margin-bottom 20px
-    min-width 1024px
+    //margin-bottom 20px
+    //min-width 1024px
+    @media (min-width: 768px)
+      .ant-col-md-24
+        margin-bottom 10px
+    @media (min-width: 576px)
+      .ant-col-sm-24
+        margin-bottom 10px
     .M-scrollmessage
       .ant-card
-        margin-right 10px
         border-radius 18px
         .ant-card-body
           padding 10px
 
     .M-statistic
       display flex
+      //min-width 405px
       .ant-card
         border-radius 18px
         width 100%
@@ -39,5 +45,10 @@
         div
           margin-right 10px
           width: 100%
+.scrollPage
+  .scrollWrapper
+    ul
+      li
+        width 100%
 
 

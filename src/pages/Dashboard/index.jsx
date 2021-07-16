@@ -176,17 +176,26 @@ class Dashboard extends Component {
         }
         return (
             <div className='P-home'>
-                <Row className='P-scrollmessage'>
-                    <Col span={15} className="M-scrollmessage">
+                <Row className='P-scrollmessage' gutter={[10, 0]}>
+                    <Col xs={24}
+                         sm={24}
+                         md={24}
+                         lg={13}
+                         xl={13}
+                         className="M-scrollmessage">
                         <Card>
                             <Row>
                                 <Col span={2} className='M-sound'><SoundOutlined style={{fontSize: '22px',color: '#000'}}/></Col>
-                                <Col span={12}><Scrollmessage/></Col>
+                                <Col span={22}><Scrollmessage/></Col>
                             </Row>
                         </Card>
-
                     </Col>
-                    <Col span={9}  className="M-statistic">
+                    <Col xs={24}
+                         sm={24}
+                         md={24}
+                         lg={11}
+                         xl={11}
+                         className="M-statistic">
                         <Card>
                             <div>累计访问平台</div>
                             <div className='card-cell'><span className='cell-title'>登录平台次数</span><span className='M-number'>123</span></div>
@@ -212,7 +221,6 @@ class Dashboard extends Component {
                              left={<Echartsdemo option={optionPie} onEvents={onEvents}/>}
                              right={<Echartsdemo option={optionsLine} onEvents={onEvents}/>} history={this.props.history}/>
 
-                <Demo/>
             </div>
         );
     }

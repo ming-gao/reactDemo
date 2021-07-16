@@ -19,3 +19,36 @@
 .site-layout .site-layout-background {
   background: #fff;
 }
+.ant-menu
+  height calc(100% - 40px)
+.menu-fold
+  height: 40px;
+  background-color: #001529
+  padding 10px 22px
+  span
+    font-size 18px
+    color #fff
+.ant-layout
+  .ant-layout-has-sider
+    > .ant-layout, .ant-layout.ant-layout-has-sider
+      > .ant-layout-content
+        padding 0 8px
+.site-layout
+  .site-layout-background
+    background-color transparent
+.site-layout-background
+  //position fixed
+  //width 100%
+.ant-layout-header, .ant-layout-footer
+  position fixed
+  width 100%
+  z-index 101
+.ant-layout.ant-layout-has-sider
+  position: absolute;
+  width: 100%;
+  top: 64px;
+  z-index: 100;
+.ant-layout-sider
+  overflow: hidden;
+  position fixed
+  top 64px
