@@ -14,12 +14,12 @@ const {SubMenu} = Menu
 
 class Main extends React.Component {
     state = {
-        collapsed: false,
+        collapsed: false
     };
 
     toggle = () => {
         this.setState({
-            collapsed: !this.state.collapsed,
+            collapsed: !this.state.collapsed
         });
     };
 
@@ -48,6 +48,10 @@ class Main extends React.Component {
         console.log(collapsed);
         this.setState({ collapsed });
     };
+    componentDidMount() {
+        console.log('123',this.state.siderWidth)
+    }
+
     render() {
         const { collapsed } = this.state;
         return (
@@ -56,27 +60,26 @@ class Main extends React.Component {
                     <div className="logo" />
                 </Header>
                 <Layout className="site-layout">
-                    <Sider trigger={null} collapsible collapsed={collapsed} onCollapse={this.onCollapse} breakpoint='lg'>
+                    <Sider trigger={null}  collapsible collapsed={collapsed} onCollapse={this.onCollapse} breakpoint='lg'>
                         <div className="menu-fold" >
                             {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                                 className: 'trigger',
                                 onClick: this.toggle,
                             })}
                         </div>
-                        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}
-                              // style={{
-                              //     position: 'fixed',
-                              //     left: 0,
-                              //     overflow: "auto",
-                              //     width:"200px"
-                              // }}
-                        >
-                            {
-                                this.getMenuNodes(menuList)
-                            }
-                        </Menu>
+                        <div style={{position: 'relative',overflow:'hidden',width:'100%',height:'100%',top:'40px'}}>
+                            <div style={{position: 'absolute',inset: '0',overflow: 'scroll'}}>
+                                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}
+                                      style={{position:'fixed',}}
+                                >
+                                    {
+                                        this.getMenuNodes(menuList)
+                                    }
+                                </Menu>
+                            </div>
+                        </div>
                     </Sider>
-                    <Layout>
+                    <Layout className="rightContent">
                         <Breadcrumb style={{ margin: '16px 0' }}>
                             <Breadcrumb.Item>Home</Breadcrumb.Item>
                             <Breadcrumb.Item>List</Breadcrumb.Item>

@@ -25,6 +25,11 @@
   height: 40px;
   background-color: #001529
   padding 10px 22px
+  position fixed
+  width 100%
+  max-width:200px
+  min-width 80px
+  z-index 2
   span
     font-size 18px
     color #fff
@@ -34,21 +39,29 @@
       > .ant-layout-content
         padding 0 8px
 .site-layout
+  height calc(100%  - 64px)
   .site-layout-background
     background-color transparent
 .site-layout-background
   //position fixed
   //width 100%
-.ant-layout-header, .ant-layout-footer
+.ant-layout-header
   position fixed
   width 100%
   z-index 101
 .ant-layout.ant-layout-has-sider
-  position: absolute;
-  width: 100%;
-  top: 64px;
-  z-index: 100;
+  //position: absolute;
+  //width: 100%;
+  //top: 64px;
+  //z-index: 100;
 .ant-layout-sider
-  overflow: hidden;
-  position fixed
+  //overflow: hidden;
+  //position fixed
   top 64px
+.ant-layout-sider-children
+  height calc(100% - 40px)
+.ant-menu-inline
+  max-width: 200px
+.rightContent
+  margin-top 64px
+  z-index 3
