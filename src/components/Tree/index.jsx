@@ -1,8 +1,10 @@
 import React, {Component } from 'react';
 import PubSub from 'pubsub-js'
 import { Tree, Input } from 'antd';
-import './index.css'
 import PropTypes from 'prop-types';
+
+import './tree.css'
+
 const { Search } = Input;
 
 const treeData = [

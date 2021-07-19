@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Card, Col, Row, Button,  Skeleton, Switch } from 'antd';
 
-import './digitalCard.styl'
+import './digitalCard.css'
 
 class DigitalCard extends Component {
     state = {

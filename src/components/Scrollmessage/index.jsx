@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import './Srollmessage.styl'
+import './Srollmessage.css'
 
 export default class Scrollmessage extends Component {
     constructor(props) {

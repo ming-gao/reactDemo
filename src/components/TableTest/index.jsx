@@ -4,7 +4,7 @@ import {Button, Popconfirm, Pagination } from "antd";
 import {Router, Route, Link} from 'react-router-dom'
 
 
-import './TableTest.styl'
+import './TableTest.css'
 
 class TableTest extends Component {
     state = {

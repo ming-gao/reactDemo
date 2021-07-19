@@ -19,7 +19,7 @@
     background-color: unset;
 }
 .ant-layout-sider{
-    background-color:#fff;
+    background-color:#fff !important;
 }
 .site-tree-search-value {
     color: #f50;

@@ -8,7 +8,7 @@ import Scrollmessage from '../../components/Scrollmessage'
 import Demo from "../Generators"
 import { SoundOutlined, createFromIconfontCN  } from '@ant-design/icons';
 
-import './Dashboard.styl'
+import './Dashboard.css'
 
 const option = {
     series: [{
@@ -93,7 +93,7 @@ const optionsLine = {
     },
     grid: {
         height: "75%",
-        width:'80%',
+        width:'60%',
         top: '10%',
         left: '50'
     },

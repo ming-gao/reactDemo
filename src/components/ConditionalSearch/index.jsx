@@ -3,7 +3,7 @@ import {Button, Collapse} from 'antd';
 import {SearchOutlined, ClearOutlined, CloseSquareOutlined, FilterOutlined} from '@ant-design/icons';
 import FormRender, {connectForm} from 'form-render';
 
-import './ConditionalSearch.styl'
+import './ConditionalSearch.css'
 
 const {Panel} = Collapse;
 const schema = {

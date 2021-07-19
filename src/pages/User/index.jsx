@@ -13,7 +13,9 @@ import {
     UnlockOutlined, VideoCameraOutlined
 } from "@ant-design/icons";
 import {Link} from "react-router-dom";
-import './user.styl'
+
+import './user.css'
+
 const {Sider, Content} = Layout;
 const { Step } = Steps;
 const steps = [

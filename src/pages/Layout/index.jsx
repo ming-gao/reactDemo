@@ -7,22 +7,23 @@ import Dashboard from '../Dashboard'
 import Demo from '../Generators'
 import UserGroup from  '../UserGroup'
 import User from '../User'
-import './index.styl'
+import './index.less'
 
 const { Header, Sider, Content } = Layout;
 const {SubMenu} = Menu
 
 class Main extends React.Component {
     state = {
-        collapsed: false
+        collapsed: false,
     };
 
     toggle = () => {
         this.setState({
-            collapsed: !this.state.collapsed
+            collapsed: !this.state.collapsed,
         });
     };
 
+    // 根据配置文件生成侧边栏导航列表
     getMenuNodes=(menuList)=>{
         return menuList.map(item => {
             if (!item.children){
@@ -48,10 +49,6 @@ class Main extends React.Component {
         console.log(collapsed);
         this.setState({ collapsed });
     };
-    componentDidMount() {
-        console.log('123',this.state.siderWidth)
-    }
-
     render() {
         const { collapsed } = this.state;
         return (
@@ -60,24 +57,20 @@ class Main extends React.Component {
                     <div className="logo" />
                 </Header>
                 <Layout className="site-layout">
-                    <Sider trigger={null}  collapsible collapsed={collapsed} onCollapse={this.onCollapse} breakpoint='lg'>
+                    <Sider trigger={null} collapsible collapsed={collapsed} onCollapse={this.onCollapse} breakpoint='lg'>
                         <div className="menu-fold" >
                             {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                                 className: 'trigger',
                                 onClick: this.toggle,
                             })}
                         </div>
-                        <div style={{position: 'relative',overflow:'hidden',width:'100%',height:'100%',top:'40px'}}>
-                            <div style={{position: 'absolute',inset: '0',overflow: 'scroll'}}>
-                                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}
-                                      style={{position:'fixed',}}
-                                >
-                                    {
-                                        this.getMenuNodes(menuList)
-                                    }
-                                </Menu>
-                            </div>
-                        </div>
+                        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}
+                            style={{position: 'fixed',top: '104px'}}
+                        >
+                            {
+                                this.getMenuNodes(menuList)
+                            }
+                        </Menu>
                     </Sider>
                     <Layout className="rightContent">
                         <Breadcrumb style={{ margin: '16px 0' }}>
@@ -92,6 +85,7 @@ class Main extends React.Component {
                             }}
                         >
                             <Switch>
+                                <Route path="/dashboard" component={Dashboard} />
                                 <Route path="/dashboard" component={Dashboard} />
                                 <Route path="/demo" component={Demo} />
                                 <Route path="/usergroup" component={UserGroup} />

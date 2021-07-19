@@ -5,6 +5,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@babel/core": "7.12.3",
+    "@craco/craco": "^6.2.0",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
     "@svgr/webpack": "5.5.0",
     "@testing-library/jest-dom": "^5.14.1",
@@ -23,6 +24,7 @@
     "bfj": "^7.0.2",
     "camelcase": "^6.1.0",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
+    "craco-less": "^1.18.0",
     "css-loader": "4.3.0",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
@@ -48,6 +50,7 @@
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
+    "less": "^4.1.1",
     "mini-css-extract-plugin": "0.11.3",
     "optimize-css-assets-webpack-plugin": "5.0.4",
     "pnp-webpack-plugin": "1.6.4",
@@ -67,6 +70,7 @@
     "react-highlight-words": "^0.17.0",
     "react-refresh": "^0.8.3",
     "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
     "react-transition-group": "^4.4.2",
     "resolve": "1.18.1",
     "resolve-url-loader": "^3.1.2",
@@ -84,9 +88,9 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test"
   },
   "eslintConfig": {
     "extends": [
@@ -176,6 +180,7 @@
     "nprogress": "^0.2.0",
     "react-loadable": "^5.5.0",
     "react-router": "^5.2.0",
-    "stylus": "^0.54.8"
+    "stylus": "^0.54.8",
+    "webpack-cli": "^4.7.2"
   }
 }
