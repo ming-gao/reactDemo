@@ -1,0 +1,30 @@
+body,
+html {
+  padding: 0;
+  margin: 0;
+}
+ul {
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style: none;
+}
+.scrollPage .scrollWrapper {
+  position: relative;
+  height: 24px;
+  overflow: hidden;
+}
+.scrollPage .scrollWrapper ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.scrollPage .scrollWrapper ul li {
+  height: 24px;
+  line-height: 24px;
+}
+.anim {
+  transition: all 0.5s;
+  margin-top: -24px;
+}

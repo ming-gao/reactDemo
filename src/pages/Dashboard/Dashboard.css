@@ -1,0 +1,51 @@
+.P-home {
+  background-color: #f6f6f6;
+}
+.P-home .P-scrollmessage {
+  margin-bottom: 20px;
+  min-width: 1024px;
+}
+.P-home .P-scrollmessage .M-scrollmessage .ant-card {
+  margin-right: 10px;
+  border-radius: 18px;
+}
+.P-home .P-scrollmessage .M-scrollmessage .ant-card .ant-card-body {
+  padding: 10px;
+}
+.P-home .P-scrollmessage .M-statistic {
+  display: flex;
+}
+.P-home .P-scrollmessage .M-statistic .ant-card {
+  border-radius: 18px;
+  width: 100%;
+}
+.P-home .P-scrollmessage .M-statistic .ant-card .ant-card-head {
+  min-height: 32px;
+  padding: 0 10px;
+}
+.P-home .P-scrollmessage .M-statistic .ant-card .ant-card-head .ant-card-head-title {
+  padding: 0;
+}
+.P-home .P-scrollmessage .M-statistic .ant-card .ant-card-body {
+  padding: 10px;
+  display: flex;
+  margin-right: 10px;
+}
+.P-home .P-scrollmessage .M-statistic .ant-card .ant-card-body .card-cell {
+  width: 100%;
+  display: flex;
+}
+.P-home .P-scrollmessage .M-statistic .ant-card .ant-card-body .card-cell .cell-title {
+  min-width: 90px;
+}
+.P-home .P-scrollmessage .M-statistic .ant-card .ant-card-body div {
+  width: 100%;
+}
+.P-home .P-scrollmessage .M-statistic .ant-card .ant-card-body div .M-number {
+  margin: 0;
+  font-weight: 700;
+}
+.P-home .P-scrollmessage .M-statistic .ant-card div {
+  margin-right: 10px;
+  width: 100%;
+}
