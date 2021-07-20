@@ -57,7 +57,7 @@ class Main extends React.Component {
                     <div className="logo" />
                 </Header>
                 <Layout className="site-layout">
-                    <Sider trigger={null} collapsible collapsed={collapsed} onCollapse={this.onCollapse} breakpoint='lg'>
+                    <Sider className="P-sider" trigger={null} collapsible collapsed={collapsed} onCollapse={this.onCollapse} breakpoint='lg'>
                         <div className="menu-fold" >
                             {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                                 className: 'trigger',

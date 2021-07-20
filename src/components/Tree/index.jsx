@@ -1,7 +1,8 @@
 import React, {Component } from 'react';
 import PubSub from 'pubsub-js'
-import { Tree, Input } from 'antd';
+import { Tree, Input,Divider } from 'antd';
 import PropTypes from 'prop-types';
+import { UserOutlined } from "@ant-design/icons";
 
 import './tree.css'
 
@@ -11,57 +12,68 @@ const treeData = [
     {
         title: '0-0',
         key: '0-0',
+        icon: <UserOutlined />,
         children: [
             {
                 title: '0-0-0',
                 key: '0-0-0',
-                isEditable: false
+                icon: <UserOutlined />,
+
             },
             {
                 title: '0-0-1',
                 key: '0-0-1',
-                isEditable: false
+                icon: <UserOutlined />,
+
             },
             {
                 title: '0-0-2',
                 key: '0-0-2',
-                isEditable: false
+                icon: <UserOutlined />,
+
             },
             {
                 title: '0-0-3',
                 key: '0-0-3',
-                isEditable: false
+                icon: <UserOutlined />,
+
             },
             {
                 title: '0-0-4',
                 key: '0-0-4',
-                isEditable: false
+                icon: <UserOutlined />,
+
             },
             {
                 title: '0-0-5',
                 key: '0-0-5',
-                isEditable: false
+                icon: <UserOutlined />,
+
             },
         ],
     },
     {
         title: '0-1',
         key: '0-1',
+        icon: <UserOutlined />,
         children: [
             {
                 title: '0-1-0',
                 key: '0-1-0',
-                isEditable: false
+                icon: <UserOutlined />,
+
             },
             {
                 title: '0-1-1',
                 key: '0-1-1',
-                isEditable: false
+                icon: <UserOutlined />,
+
             },
             {
                 title: '0-1-2',
                 key: '0-1-2',
-                isEditable: false
+                icon: <UserOutlined />,
+
             },
         ],
     }
@@ -175,10 +187,11 @@ class Demo extends Component {
             });
         return (
             <div className='tree-container'>
+                <h1>{this.props.title}</h1>
+                <Divider className='tree-divider'/>
                 {this.props.isShowSearch?(<Search style={{ marginBottom: 8 }} allowClear={true} size='small' placeholder="Search" onChange={this.onChange} />):null}
                 <Tree
-                    showLine
-                    checkable
+                    showIcon={true}
                     defaultExpandedKeys={this.state.expandedKeys}
                     onExpand={this.onExpand}
                     autoExpandParent={autoExpandParent}
@@ -186,7 +199,6 @@ class Demo extends Component {
                     onCheck={this.onCheck}
                     checkedKeys={this.state.checkedKeys}
                     treeData={loop(treeData)}
-
                 >
                 </Tree>
             </div>

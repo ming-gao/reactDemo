@@ -7,3 +7,9 @@
 .ant-pagination .ant-pagination-total-text {
   margin-right: 20px;
 }
+.odd{
+  background-color: #ebeef5
+}
+.even{
+  background-color:#FFFFFF ;
+}

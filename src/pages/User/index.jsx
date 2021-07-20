@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Input, Layout, message, Modal, Popconfirm, Steps} from "antd";
+import {Button, Input, Layout, message, Modal, Popconfirm, Steps, Table} from "antd";
 // import Tableuser from "../../components/Tableuser";
 import TableTest from "../../components/TableTest";
 import Demo from '../../components/Tree'
@@ -13,7 +13,6 @@ import {
     UnlockOutlined, VideoCameraOutlined
 } from "@ant-design/icons";
 import {Link} from "react-router-dom";
-
 
 import './user.css'
 
@@ -45,15 +44,16 @@ const dataSource = [
 ]
 
 const columns = [
-    { code: 'userID', name: '用户ID', width: 150 },
-    { code: 'userName', name: '用户姓名', width: 100, align: 'right' },
-    { code: 'userStatus', name: '用户状态', width: 100, align: 'right' },
-    { code: 'userGroup', name: '所属用户组', width: 100, align: 'right' },
-    { code: 'phone', name: '电话号码', width: 180 },
-    { code: 'description', name: '描述', width: 180 },
+    { title: 'userID', dataIndex: 'userID', key: 'userID', },
+    { title: 'userName', dataIndex: 'userName', key: 'userName', },
+    { title: 'userStatus', dataIndex: 'userStatus', key: 'userStatus', },
+    { title: 'userGroup', dataIndex: 'userGroup', key: 'userGroup', },
+    { title: 'phone', dataIndex: 'phone', key: 'phone', },
+    { title: 'description', dataIndex: 'description', key: 'description', },
     {
-        code: 'action',
-        name: '动作',
+        title: 'action',
+        dataIndex: 'action',
+        key: 'action',
         render: (_, record) =>
             (
                 <div>
@@ -152,7 +152,7 @@ class User extends Component {
         return (
             <Layout className='User'>
                 <Layout>
-                    <Sider><Demo isShowSearch={false} addColumn={this.addColumn}/></Sider>
+                    <Sider><Demo isShowSearch={false} title='用户目录' addColumn={this.addColumn}/></Sider>
                     <Content>
                         <div className='tableTitle'>
                             <Button type="default" size="small" onClick={this.addColumn} icon={<PlusOutlined />} style={{backgroundColor: '#84C93C'}}><Link to='/addPage/'>添加</Link></Button>
@@ -203,9 +203,8 @@ class User extends Component {
                             </Modal>
                             <ConditionalSearch/>
                         </div>
-                        <TableTest dataSource={dataSource} columns={columns}/>
+                        <TableTest columns={columns} dataSource={dataSource}/>
                     </Content>
-                    {/*<Tableuser buttonProps={this.buttonProps} column={this.state.column}/>*/}
                 </Layout>
             </Layout>
         );

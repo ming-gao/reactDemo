@@ -11,29 +11,28 @@ import Demo from "../../components/Tree";
 
 const {Sider, Content} = Layout;
 const dataSource = [
-    { userID: '湖北省', userName: 54406, userStatus: 4793, userGroup: 1457, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '广东省', userName: 1294, userStatus: 409, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '河南省', userName: 1212, userStatus: 390, userGroup: 13, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '浙江省', userName: 1162, userStatus: 428, userGroup: 0, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '湖南省', userName: 1001, userStatus: 417, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '浙江省', userName: 1162, userStatus: 428, userGroup: 0, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '湖南省', userName: 1001, userStatus: 417, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '浙江省', userName: 1162, userStatus: 428, userGroup: 0, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '湖南省', userName: 1001, userStatus: 417, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '浙江省', userName: 1162, userStatus: 428, userGroup: 0, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '湖南省', userName: 1001, userStatus: 417, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
+    { userName: 54406,description: 1272457, },
+    { userName: 34,description: 147557, },
+    { userName: 52346,description: 1453727, },
+    { userName: 5431406,description: 21457, },
+    { userName: 5412406,description: 271457, },
+    { userName: 5479406,description: 6731457, },
+    { userName: 5445406,description: 35671457, },
+    { userName: 1154406,description: 2671457, },
+    { userName: 5414406,description: 26735221457, },
+    { userName: 7854406,description: 222751457, },
+    { userName: 5364406,description: 2751457, },
+    { userName: 5486406,description: 2571457, },
+    { userName: 5427406,description: 271457, },
 ]
 
 const columns = [
-    { code: 'userID', name: '用户ID', width: 150 },
-    { code: 'userName', name: '用户姓名', width: 100, align: 'right' },
-    { code: 'userStatus', name: '用户状态', width: 100, align: 'right' },
-    { code: 'userGroup', name: '所属用户组', width: 100, align: 'right' },
-    { code: 'phone', name: '电话号码', width: 180 },
-    { code: 'description', name: '描述', width: 180 },
+    { title: 'userName', dataIndex: 'userName', key: 'userName', },
+    { title: 'description', dataIndex: 'description', key: 'description', },
     {
-        code: 'action',
-        name: '动作',
+        title: 'action',
+        dataIndex: 'action',
+        key: 'action',
         render: (_, record) =>
             (
                 <div>
@@ -42,12 +41,6 @@ const columns = [
                     </Link>
                     <Link to='/adduser'>
                         <EyeOutlined style={{fontSize: 18}}/>
-                    </Link>
-                    <Link to='/user'>
-                        <PlayCircleOutlined style={{fontSize: 18}}/>
-                    </Link>
-                    <Link to='/user'>
-                        <VideoCameraOutlined style={{fontSize: 18}}/>
                     </Link>
                     <Link to='/user'>
                         <KeyOutlined style={{fontSize: 18}}/>
@@ -82,7 +75,7 @@ class UserGroup extends Component {
         return (
             <div>
                 <Layout>
-                    <Sider><Demo isShowSearch={false} addColumn={this.addColumn}/></Sider>
+                    <Sider><Demo title='用户目录' isShowSearch={false} addColumn={this.addColumn}/></Sider>
                     <Content>
                         <div className='tableTitle'>
                             <Button type="default" size="small" onClick={this.addColumn} icon={<PlusOutlined />} style={{backgroundColor: '#84C93C'}}><Link to='/addPage/'>添加</Link></Button>

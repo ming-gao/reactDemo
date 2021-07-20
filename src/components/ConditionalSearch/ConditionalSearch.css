@@ -2,7 +2,7 @@
     padding: 8px 16px;
 }
 .ant-collapse-icon-position-right > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
-    top: -50%;
+    top: -50% !important;
 }
 .ant-collapse-ghost > .ant-collapse-item > .ant-collapse-content {
     margin-left: 10px;
