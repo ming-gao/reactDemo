@@ -1,7 +1,7 @@
 import React from "react";
 import {Layout, Menu, Breadcrumb } from 'antd';
 import {MenuUnfoldOutlined, MenuFoldOutlined, UserOutlined, VideoCameraOutlined, UploadOutlined,} from '@ant-design/icons';
-import { Route, Redirect, Switch,Link } from 'react-router-dom'
+import { Route, Redirect, Switch,Link,withRouter } from 'react-router-dom'
 import menuList from '../../config/menuConfig'
 import Dashboard from '../Dashboard'
 import Demo from '../Generators'
@@ -51,8 +51,10 @@ class Main extends React.Component {
     };
     render() {
         const { collapsed } = this.state;
+        const path =this.props.location.pathname;
+        console.log(path)
         return (
-            <Layout>
+            <Layout className="P-layout-main">
                 <Header className="site-layout-background" >
                     <div className="logo" />
                 </Header>
@@ -64,7 +66,7 @@ class Main extends React.Component {
                                 onClick: this.toggle,
                             })}
                         </div>
-                        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}
+                        <Menu theme="dark" mode="inline" selectedKeys={[path]}
                             style={{position: 'fixed',top: '104px'}}
                         >
                             {
@@ -99,4 +101,4 @@ class Main extends React.Component {
     }
 }
 
-export default Main
+export default withRouter(Main)

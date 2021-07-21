@@ -1,6 +1,6 @@
 const menuList=[
     {
-        key: 'dashboard',
+        key: '/dashboard',
         name:'仪表盘',
         icon: ''
     },
@@ -10,12 +10,12 @@ const menuList=[
         icon: '',
         children:[
             {
-                key: 'user',
+                key: '/user',
                 name:'用户管理',
                 icon: '',
             },
             {
-                key: 'userGroup',
+                key: '/userGroup',
                 name:'用户组管理',
                 icon: '',
             },

@@ -18,7 +18,7 @@ class TableTest extends Component {
         const pagination = {
             total: dataSource.length,
             showTotal: ((total, range) => `第${range[0]} - ${range[1]}项记录 共 ${total} 项记录`),
-            defaultPageSize: 20,
+            defaultPageSize: 10,
             defaultCurrent: 1,
             showSizeChanger: true,
             pageSizeOptions: [5, 10, 20, 50],
@@ -26,7 +26,7 @@ class TableTest extends Component {
         }
 
         return (
-            <Table columns={columns} dataSource={dataSource} rowClassName={(record, index) => {
+            <Table columns={columns} dataSource={dataSource} bordered scroll={{ y: 340 }} rowClassName={(record, index) => {
                 let className = 'odd'
                 if (index % 2 === 1) className = 'even'
                 return className

@@ -155,7 +155,7 @@ class User extends Component {
                     <Sider><Demo isShowSearch={false} title='用户目录' addColumn={this.addColumn}/></Sider>
                     <Content>
                         <div className='tableTitle'>
-                            <Button type="default" size="small" onClick={this.addColumn} icon={<PlusOutlined />} style={{backgroundColor: '#84C93C'}}><Link to='/addPage/'>添加</Link></Button>
+                            <Button type="primary" size="small" onClick={this.addColumn} icon={<PlusOutlined />} style={{backgroundColor: '#84C93C'}}><Link to='/addPage/'>添加</Link></Button>
                             <Popconfirm title="确认删除已选内容?" okText="是" cancelText="否"
                                         onConfirm={this.handleDeleteAll}>
                                 <Button type="default" size="small" icon={<DeleteOutlined />} style={{backgroundColor: '#E67A5C'}} danger disabled={!hasSelected}
@@ -163,13 +163,13 @@ class User extends Component {
                                     删除
                                 </Button>
                             </Popconfirm>
-                            <Button type="default" size="small" style={{backgroundColor: '#F2AE00'}} icon={<LockOutlined />} onClick={this.lock}>锁定</Button>
-                            <Button type="default" size="small" style={{backgroundColor: '#439EDB'}} icon={<UnlockOutlined />} onClick={this.unlock}>解锁</Button>
-                            <Button type="default" size="small" style={{backgroundColor: '#FBA1D0'}} icon={<ImportOutlined />} onClick={this.importcus}>导入</Button>
-                            <Button type="default" size="small" style={{backgroundColor: '#FBA1D0'}} icon={<ExportOutlined />} onClick={this.exportcus}>导出</Button>
-                            <Button type="default" size="small" style={{backgroundColor: '#30B29D'}} icon={<KeyOutlined />} onClick={this.auth}>授权</Button>
-                            <Button type="default" size="small" style={{backgroundColor: '#988DB6'}} icon={<ToolOutlined />} onClick={this.config}>策略绑定</Button>
-                            <Button type="default" size="small" style={{backgroundColor: '#188D8F'}} icon={<ImportOutlined />} onClick={this.ad}>AD域导入</Button>
+                            <Button type="primary" size="small" style={{backgroundColor: '#F2AE00'}} icon={<LockOutlined />} onClick={this.lock}>锁定</Button>
+                            <Button type="primary" size="small" style={{backgroundColor: '#439EDB'}} icon={<UnlockOutlined />} onClick={this.unlock}>解锁</Button>
+                            <Button type="primary" size="small" style={{backgroundColor: '#FBA1D0'}} icon={<ImportOutlined />} onClick={this.importcus}>导入</Button>
+                            <Button type="primary" size="small" style={{backgroundColor: '#FBA1D0'}} icon={<ExportOutlined />} onClick={this.exportcus}>导出</Button>
+                            <Button type="primary" size="small" style={{backgroundColor: '#30B29D'}} icon={<KeyOutlined />} onClick={this.auth}>授权</Button>
+                            <Button type="primary" size="small" style={{backgroundColor: '#988DB6'}} icon={<ToolOutlined />} onClick={this.config}>策略绑定</Button>
+                            <Button type="primary" size="small" style={{backgroundColor: '#188D8F'}} icon={<ImportOutlined />} onClick={this.ad}>AD域导入</Button>
                             <span className="deleteTips">
                         {hasSelected ? `选择了 ${selectedRowKeys.length} 项` : ''}
                     </span>

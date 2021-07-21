@@ -1,53 +1,53 @@
-import React, {Component } from 'react';
+import React, {Component} from 'react';
 import PubSub from 'pubsub-js'
-import { Tree, Input,Divider } from 'antd';
+import {Tree, Input, Divider} from 'antd';
 import PropTypes from 'prop-types';
-import { UserOutlined } from "@ant-design/icons";
+import {UserOutlined} from "@ant-design/icons";
 
 import './tree.css'
 
-const { Search } = Input;
+const {Search} = Input;
 
 const treeData = [
     {
-        title: '0-0',
+        title: '组织机构',
         key: '0-0',
-        icon: <UserOutlined />,
+        icon: <UserOutlined/>,
         children: [
             {
                 title: '0-0-0',
                 key: '0-0-0',
-                icon: <UserOutlined />,
+                icon: <UserOutlined/>,
 
             },
             {
                 title: '0-0-1',
                 key: '0-0-1',
-                icon: <UserOutlined />,
+                icon: <UserOutlined/>,
 
             },
             {
                 title: '0-0-2',
                 key: '0-0-2',
-                icon: <UserOutlined />,
+                icon: <UserOutlined/>,
 
             },
             {
                 title: '0-0-3',
                 key: '0-0-3',
-                icon: <UserOutlined />,
+                icon: <UserOutlined/>,
 
             },
             {
                 title: '0-0-4',
                 key: '0-0-4',
-                icon: <UserOutlined />,
+                icon: <UserOutlined/>,
 
             },
             {
                 title: '0-0-5',
                 key: '0-0-5',
-                icon: <UserOutlined />,
+                icon: <UserOutlined/>,
 
             },
         ],
@@ -55,24 +55,24 @@ const treeData = [
     {
         title: '0-1',
         key: '0-1',
-        icon: <UserOutlined />,
+        icon: <UserOutlined/>,
         children: [
             {
                 title: '0-1-0',
                 key: '0-1-0',
-                icon: <UserOutlined />,
+                icon: <UserOutlined/>,
 
             },
             {
                 title: '0-1-1',
                 key: '0-1-1',
-                icon: <UserOutlined />,
+                icon: <UserOutlined/>,
 
             },
             {
                 title: '0-1-2',
                 key: '0-1-2',
-                icon: <UserOutlined />,
+                icon: <UserOutlined/>,
 
             },
         ],
@@ -108,35 +108,37 @@ const getParentKey = (key, tree) => {  //获取节点的父节点
 
 class Demo extends Component {
     state = {
-        checkedKeys:[],
-        expandedKeys:['0-0'],
+        checkedKeys: [],
+        expandedKeys: ['0-0'],
         searchValue: '',
         autoExpandParent: true,
     }
-    static propTypes={
-        isShowSearch:PropTypes.bool
+    static propTypes = {
+        isShowSearch: PropTypes.bool
     }
-    static defaultProps={
-        isShowSearch:true
+    static defaultProps = {
+        isShowSearch: true
     }
     onExpand = (expandedKeys) => {
         console.log('onExpand', expandedKeys);
         this.setState({expandedKeys: expandedKeys})
     }
-    componentDidMount(){
 
-        PubSub.subscribe('deleteByKey',(_,key) =>{
-            console.log('返回的key',key)
-            this.setState({checkedKeys:key})
+    componentDidMount() {
+
+        PubSub.subscribe('deleteByKey', (_, key) => {
+            console.log('返回的key', key)
+            this.setState({checkedKeys: key})
 
         })
-        PubSub.subscribe('deleteByRowKeys',(_,keys)=>{
-            console.log('多选删除返回的keys',keys)
-            this.setState({checkedKeys:keys})
+        PubSub.subscribe('deleteByRowKeys', (_, keys) => {
+            console.log('多选删除返回的keys', keys)
+            this.setState({checkedKeys: keys})
         })
     }
+
     onChange = e => {
-        const { value } = e.target;
+        const {value} = e.target;
         const expandedKeys = dataList
             .map(item => {
                 if (item.title.indexOf(value) > -1) {
@@ -151,15 +153,16 @@ class Demo extends Component {
             autoExpandParent: true,
         });
     };
+
     render() {
         const {searchValue, expandedKeys, autoExpandParent} = this.state;
-        this.onCheck=(checkedKeysValue,e)=>{
-            console.log('onCheck', checkedKeysValue,e);
-            this.setState({checkedKeys: checkedKeysValue,isHalfChecked:e.halfCheckedKeys.length === 1})
-            if (e.checked){
-                PubSub.publish('checkData',e.node)
+        this.onCheck = (checkedKeysValue, e) => {
+            console.log('onCheck', checkedKeysValue, e);
+            this.setState({checkedKeys: checkedKeysValue, isHalfChecked: e.halfCheckedKeys.length === 1})
+            if (e.checked) {
+                PubSub.publish('checkData', e.node)
             } else {
-                PubSub.publish('cancelCheckData',e.node)
+                PubSub.publish('cancelCheckData', e.node)
             }
         }
         const loop = data =>
@@ -189,9 +192,11 @@ class Demo extends Component {
             <div className='tree-container'>
                 <h1>{this.props.title}</h1>
                 <Divider className='tree-divider'/>
-                {this.props.isShowSearch?(<Search style={{ marginBottom: 8 }} allowClear={true} size='small' placeholder="Search" onChange={this.onChange} />):null}
+                {this.props.isShowSearch ? (
+                    <Search style={{marginBottom: 8}} allowClear={true} size='small' placeholder="Search"
+                            onChange={this.onChange}/>) : null}
                 <Tree
-                    showIcon={true}
+                    showIcon
                     defaultExpandedKeys={this.state.expandedKeys}
                     onExpand={this.onExpand}
                     autoExpandParent={autoExpandParent}

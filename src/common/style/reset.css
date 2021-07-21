@@ -1,6 +1,9 @@
 .ant-btn{
     margin-left: 3px;
 }
+.ant-btn a{
+    color:#fff;
+}
 .ant-table-tbody > tr > td{
     padding :6px 0;
     text-align:center;
@@ -17,4 +20,7 @@
 }
 .fr-content> label{
     padding:0 !important
+}
+.ant-table-tbody > tr > td{
+    white-space: nowrap;
 }
