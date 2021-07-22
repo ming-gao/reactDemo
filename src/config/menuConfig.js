@@ -5,7 +5,7 @@ const menuList=[
         icon: ''
     },
     {
-        key: 'userManagement',
+        key: '/userManagement',
         name:'用户管理',
         icon: '',
         children:[

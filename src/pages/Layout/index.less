@@ -33,11 +33,8 @@
   background-color: #001529;
   padding: 10px 22px;
   position: fixed;
-  width: 100%;
-  max-width: 200px;
+  width: inherit;
   min-width: 80px;
-  z-index: 2;
-  top: 64px;
   span {
     font-size: 18px;
     color: #fff;
@@ -55,15 +52,20 @@
 .site-layout .P-sider {
 
 }
-.ant-layout-sider-children {
-  height: calc(100% - 40px);
+.P-sider .ant-layout-sider-children {
+  position:absolute;
+  top:64px;
+  width:inherit;
+  z-index: 99;
+  height:calc(100% - 64px)
 }
 .ant-menu-inline {
   max-width: 200px;
 }
 .rightContent {
   margin-top: 64px;
-  z-index: 3;
+  z-index: 9;
+  min-width:955px
 }
 .ant-breadcrumb{
   padding:0 8px !important;

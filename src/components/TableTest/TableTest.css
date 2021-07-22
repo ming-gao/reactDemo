@@ -13,3 +13,8 @@
 .even{
   background-color:#FFFFFF ;
 }
+
+.ant-table-cell{
+  overflow:hidden;
+  text-overflow:ellipsis;
+}

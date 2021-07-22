@@ -1,5 +1,5 @@
 .ant-btn{
-    margin-left: 3px;
+    margin-right: 8px;
 }
 .ant-btn a{
     color:#fff;
@@ -20,6 +20,9 @@
 }
 .fr-content> label{
     padding:0 !important
+}
+.ant-table-thead > tr > th{
+    height:36px;
 }
 .ant-table-tbody > tr > td{
     white-space: nowrap;

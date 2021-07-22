@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Popconfirm, Pagination, Table, Tag, Space} from "antd";
+import { Table } from "antd";
 import {Router, Route, Link} from 'react-router-dom'
 
 import './TableTest.css'
@@ -14,7 +14,7 @@ class TableTest extends Component {
     }
 
     render() {
-        const {columns, dataSource} = this.props
+        const {columns, dataSource,loading} = this.props
         const pagination = {
             total: dataSource.length,
             showTotal: ((total, range) => `第${range[0]} - ${range[1]}项记录 共 ${total} 项记录`),
@@ -26,11 +26,12 @@ class TableTest extends Component {
         }
 
         return (
-            <Table columns={columns} dataSource={dataSource} bordered scroll={{ y: 340 }} rowClassName={(record, index) => {
-                let className = 'odd'
-                if (index % 2 === 1) className = 'even'
-                return className
-            }} pagination={pagination}
+            <Table columns={columns} dataSource={dataSource} loading={loading} bordered scroll={{y: 340}}
+                   rowClassName={(record, index) => {
+                       let className = 'odd'
+                       if (index % 2 === 1) className = 'even'
+                       return className
+                   }} pagination={pagination}
                    rowSelection={{
                        type: 'checkbox',
                    }}

@@ -1,134 +1,263 @@
 import React, {Component} from 'react';
-import TableTest from '../../components/TableTest'
-import ConditionalSearch from '../../components/ConditionalSearch'
-import {Link} from "react-router-dom";
-import {EditOutlined, EyeOutlined, KeyOutlined, PlayCircleOutlined, VideoCameraOutlined} from "@ant-design/icons";
-import {message} from "antd";
+import {Card, Form, Input, DatePicker, TimePicker, Select, Cascader, InputNumber, Space, Button} from 'antd';
 
-const dataSource = [
-    { userID: '湖北省', userName: 54406, userStatus: 4793, userGroup: 1457, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '广东省', userName: 1294, userStatus: 409, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '河南省', userName: 1212, userStatus: 390, userGroup: 13, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '浙江省', userName: 1162, userStatus: 428, userGroup: 0, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '湖南省', userName: 1001, userStatus: 417, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '浙江省', userName: 1162, userStatus: 428, userGroup: 0, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '湖南省', userName: 1001, userStatus: 417, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '浙江省', userName: 1162, userStatus: 428, userGroup: 0, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '湖南省', userName: 1001, userStatus: 417, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '浙江省', userName: 1162, userStatus: 428, userGroup: 0, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '湖南省', userName: 1001, userStatus: 417, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
-]
+import {MinusCircleOutlined, SmileOutlined, PlusOutlined} from '@ant-design/icons';
 
-const columns = [
-    { code: 'userID', name: '用户ID', width: 150 },
-    { code: 'userName', name: '用户姓名', width: 100, align: 'right' },
-    { code: 'userStatus', name: '用户状态', width: 100, align: 'right' },
-    { code: 'userGroup', name: '所属用户组', width: 100, align: 'right' },
-    { code: 'phone', name: '电话号码', width: 180 },
-    { code: 'description', name: '描述', width: 180 },
-    {
-        code: 'action',
-        name: '动作',
-        render: (_, record) =>
-            (
-                <div>
-                    <Link to='/user'>
-                        <EditOutlined style={{fontSize: 18}}/>
-                    </Link>
-                    <Link to='/adduser'>
-                        <EyeOutlined style={{fontSize: 18}}/>
-                    </Link>
-                    <Link to='/user'>
-                        <PlayCircleOutlined style={{fontSize: 18}}/>
-                    </Link>
-                    <Link to='/user'>
-                        <VideoCameraOutlined style={{fontSize: 18}}/>
-                    </Link>
-                    <Link to='/user'>
-                        <KeyOutlined style={{fontSize: 18}}/>
-                    </Link>
-                </div>
-            ),
-        width: 180
+import './adduser.less'
+
+const {Option} = Select;
+const formItemLayout = {
+    labelCol: {
+        xs: {
+            span: 24,
+        },
+        sm: {
+            span: 5,
+        },
     },
-]
+    wrapperCol: {
+        xs: {
+            span: 24,
+        },
+        sm: {
+            span: 12,
+        },
+    },
+};
+
+const areas = [
+    {label: 'Beijing', value: 'Beijing'},
+    {label: 'Shanghai', value: 'Shanghai'},
+];
+
+const sights = {
+    Beijing: ['Tiananmen', 'Great Wall'],
+    Shanghai: ['Oriental Pearl', 'The Bund'],
+};
 
 
-
-class Adduser extends Component {
+class AddUser extends Component {
     state = {
-        selectedRowKeys: [],
-        loading: false,
-        treeData: [],
-        total: 0,
-        pageNum: 1,
-        pageSize: 0,
-        searchText: '',
-        searchedColumn: '',
-        visible: false,  //对话框可见性控制
-        current: 0 //步骤条进度控制
-    };
-    lock=()=>{
-        if (this.state.selectedRowKeys.length===0){
-            message.warning('请选择要操作的对象');
-        }else{
-            message.success('执行成功');
-        }
+        form: {}
+    }
+    formRef = React.createRef();
 
-    }
-    unlock=()=>{
-        if (this.state.selectedRowKeys.length===0){
-            message.warning('请选择要操作的对象');
-        }
-    }
-    importcus=()=>{
-
-        message.warning('一级节点下不能添加数据');
-    }
-    exportcus=()=>{
-        this.setState({visible:true})
-    }
-    auth=()=>{
-        if (this.state.selectedRowKeys.length===0){
-            message.warning('请选择要操作的对象');
-        }
-    }
-    config=()=>{
-        if (this.state.selectedRowKeys.length===0){
-            message.warning('请选择要操作的对象');
-        }
-    }
-    ad=()=>{
-        message.warning('一级节点下不能添加数据');
-    }
-    showModal = () => {
-        this.setState({
-            visible: true,
-        });
-    };
-    handleCancel = () => {
-        this.setState({ visible: false });
-    };
     render() {
-        const {loading, selectedRowKeys, treeData,visible} = this.state;
-        const rowSelection = {
-            selectedRowKeys,
-            onChange: this.onSelectChange,
-        };
-        const hasSelected = selectedRowKeys.length > 1;
-        const {current} = this.state
 
-        const next = () => {
-            this.setState({current:current+1})
-
+        const onFinish = values => {
+            console.log('Received values of form:', values);
         };
+
+        const handleChange = () => {
+            this.formRef.current.setFieldsValue({sights: []});
+        };
+
         return (
             <div>
-                <ConditionalSearch/>
-                <TableTest/>
+                <Card title="用户信息" className="P-card P-card-userinfo" bordered={false}>
+                    <Form {...formItemLayout}>
+                        <Form.Item
+                            label="Fail"
+                            validateStatus="error"
+                            help="Should be combination of numbers & alphabets"
+                        >
+                            <Input placeholder="unavailable choice" id="error"/>
+                        </Form.Item>
+
+                        <Form.Item label="Warning" validateStatus="warning">
+                            <Input placeholder="Warning" id="warning" prefix={<SmileOutlined/>}/>
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Validating"
+                            hasFeedback
+                            validateStatus="validating"
+                            help="The information is being validated..."
+                        >
+                            <Input placeholder="I'm the content is being validated" id="validating"/>
+                        </Form.Item>
+
+                        <Form.Item label="Success" hasFeedback validateStatus="success">
+                            <Input placeholder="I'm the content" id="success"/>
+                        </Form.Item>
+
+                        <Form.Item label="Warning" hasFeedback validateStatus="warning">
+                            <Input placeholder="Warning" id="warning2"/>
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Fail"
+                            hasFeedback
+                            validateStatus="error"
+                            help="Should be combination of numbers & alphabets"
+                        >
+                            <Input placeholder="unavailable choice" id="error2"/>
+                        </Form.Item>
+
+                        <Form.Item label="Success" hasFeedback validateStatus="success">
+                            <DatePicker
+                                style={{
+                                    width: '100%',
+                                }}
+                            />
+                        </Form.Item>
+
+                        <Form.Item label="Warning" hasFeedback validateStatus="warning">
+                            <TimePicker
+                                style={{
+                                    width: '100%',
+                                }}
+                            />
+                        </Form.Item>
+
+                        <Form.Item label="Error" hasFeedback validateStatus="error">
+                            <Select allowClear>
+                                <Option value="1">Option 1</Option>
+                                <Option value="2">Option 2</Option>
+                                <Option value="3">Option 3</Option>
+                            </Select>
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Validating"
+                            hasFeedback
+                            validateStatus="validating"
+                            help="The information is being validated..."
+                        >
+                            <Cascader
+                                options={[
+                                    {
+                                        value: 'xx',
+                                        label: 'xx',
+                                    },
+                                ]}
+                                allowClear
+                            />
+                        </Form.Item>
+
+                        <Form.Item
+                            label="inline"
+                            style={{
+                                marginBottom: 0,
+                            }}
+                        >
+                            <Form.Item
+                                validateStatus="error"
+                                help="Please select the correct date"
+                                style={{
+                                    display: 'inline-block',
+                                    width: 'calc(50% - 12px)',
+                                }}
+                            >
+                                <DatePicker/>
+                            </Form.Item>
+                            <span
+                                style={{
+                                    display: 'inline-block',
+                                    width: '24px',
+                                    lineHeight: '32px',
+                                    textAlign: 'center',
+                                }}
+                            >
+                            </span>
+                            <Form.Item
+                                style={{
+                                    display: 'inline-block',
+                                    width: 'calc(50% - 12px)',
+                                }}
+                            >
+                                <DatePicker/>
+                            </Form.Item>
+                        </Form.Item>
+
+                        <Form.Item label="Success" hasFeedback validateStatus="success">
+                            <InputNumber
+                                style={{
+                                    width: '100%',
+                                }}
+                            />
+                        </Form.Item>
+
+                        <Form.Item label="Success" hasFeedback validateStatus="success">
+                            <Input allowClear placeholder="with allowClear"/>
+                        </Form.Item>
+
+                        <Form.Item label="Warning" hasFeedback validateStatus="warning">
+                            <Input.Password placeholder="with input password"/>
+                        </Form.Item>
+
+                        <Form.Item label="Error" hasFeedback validateStatus="error">
+                            <Input.Password allowClear placeholder="with input password and allowClear"/>
+                        </Form.Item>
+                    </Form>
+                </Card>
+                <Card title="认证信息" className="P-card P-card-authinfo" bordered={false}>
+                    <Form form={this.form} ref={this.formRef} name="dynamic_form_nest_item" onFinish={onFinish}
+                          autoComplete="off">
+                        <Form.Item name="area" label="Area" rules={[{required: true, message: 'Missing area'}]}>
+                            <Select options={areas} onChange={handleChange}/>
+                        </Form.Item>
+                        <Form.List name="sights">
+                            {(fields, {add, remove}) => (
+                                <>
+                                    {fields.map(field => (
+                                        <Space key={field.key} align="baseline">
+                                            <Form.Item
+                                                noStyle
+                                                shouldUpdate={(prevValues, curValues) =>
+                                                    prevValues.area !== curValues.area || prevValues.sights !== curValues.sights
+                                                }
+                                            >
+                                                {() => (
+                                                    <Form.Item
+                                                        {...field}
+                                                        label="Sight"
+                                                        name={[field.name, 'sight']}
+                                                        fieldKey={[field.fieldKey, 'sight']}
+                                                        rules={[{required: true, message: 'Missing sight'}]}
+                                                    >
+                                                        <Select disabled={!this.formRef.current.getFieldValue('area')}
+                                                                style={{width: 130}}>
+                                                            {(sights[this.formRef.current.getFieldValue('area')] || []).map(item => (
+                                                                <Option key={item} value={item}>
+                                                                    {item}
+                                                                </Option>
+                                                            ))}
+                                                        </Select>
+                                                    </Form.Item>
+                                                )}
+                                            </Form.Item>
+                                            <Form.Item
+                                                {...field}
+                                                label="Price"
+                                                name={[field.name, 'price']}
+                                                fieldKey={[field.fieldKey, 'price']}
+                                                rules={[{required: true, message: 'Missing price'}]}
+                                            >
+                                                <Input/>
+                                            </Form.Item>
+                                            <MinusCircleOutlined onClick={() => remove(field.name)}/>
+                                        </Space>
+                                    ))}
+
+                                    <Form.Item>
+                                        <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined/>}>
+                                            Add sights
+                                        </Button>
+                                    </Form.Item>
+                                </>
+                            )}
+                        </Form.List>
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit">
+                                Submit
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </Card>
             </div>
         );
     }
 }
 
-export default Adduser;
+export default AddUser;

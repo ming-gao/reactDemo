@@ -16,8 +16,12 @@ import './usergroup.less'
 const {Sider, Content} = Layout;
 
 const columns = [
-    {title: 'userName', dataIndex: 'userName', key: 'userName',},
-    {title: 'description', dataIndex: 'description', key: 'description',},
+    {title: 'userName', dataIndex: 'userName', key: 'userName',render:(text,record)=>{
+        return <span title={text}>{text}</span>
+        }},
+    {title: 'description', dataIndex: 'description', key: 'description',render:(text,record)=>{
+            return <span title={text}>{text}</span>
+        }},
     {
         title: 'action',
         dataIndex: 'action',
@@ -43,7 +47,7 @@ const columns = [
 class UserGroup extends Component {
     state = {
         selectedRowKeys: [],
-        loading: false,
+        loading: true,
         dataSource: []
     }
     addColumn = (column) => {
@@ -62,7 +66,7 @@ class UserGroup extends Component {
 
     componentDidMount() {
         getGroupTable().then(res => {
-            this.setState({dataSource: res.data.list})
+            this.setState({dataSource: res.data.list,loading:false})
         })
     }
 
@@ -75,7 +79,7 @@ class UserGroup extends Component {
                 <Content>
                     <div className='tableTitle'>
                         <Button type="primary" size="small" onClick={this.addColumn} icon={<PlusOutlined/>}
-                                style={{backgroundColor: '#84C93C'}}><Link to='/addPage/'>添加</Link></Button>
+                                style={{backgroundColor: '#84C93C'}}><Link to='/adduser/'>添加</Link></Button>
                         <Popconfirm title="确认删除已选内容?" okText="是" cancelText="否"
                                     onConfirm={this.handleDeleteAll}>
                             <Button type="default" size="small" icon={<DeleteOutlined/>}
@@ -93,7 +97,7 @@ class UserGroup extends Component {
                     </span>
                         <ConditionalSearch/>
                     </div>
-                    <TableTest dataSource={dataSource} columns={columns}/>
+                    <TableTest dataSource={dataSource} columns={columns} loading={loading}/>
                 </Content>
             </Layout>
 
