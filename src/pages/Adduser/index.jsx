@@ -3,6 +3,8 @@ import {Card, Form, Input, DatePicker, TimePicker, Select, Cascader, InputNumber
 
 import {MinusCircleOutlined, SmileOutlined, PlusOutlined} from '@ant-design/icons';
 
+import DrawerSearch from "../../components/DrawerSearch";
+
 import './adduser.less'
 
 const {Option} = Select;

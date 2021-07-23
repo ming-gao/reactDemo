@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Button, Input, Layout, message, Modal, Popconfirm, Steps, Table} from "antd";
+import {Input, Layout, message, Modal, Popconfirm, Steps, Table} from "antd";
+import {Button} from 'usue-cc';
 // import Tableuser from "../../components/Tableuser";
 import TableTest from "../../components/TableTest";
 import Demo from '../../components/Tree'
@@ -14,46 +15,34 @@ import {
 } from "@ant-design/icons";
 import {Link} from "react-router-dom";
 
+import {getUserTable} from '../../api/user'
+
 import './user.css'
 
 const {Sider, Content} = Layout;
-const { Step } = Steps;
+const {Step} = Steps;
 const steps = [
     {
         title: '设置密码',
-        description:"密码长度6~20位，任意字母或数字组合",
-        content: <Input.Password placeholder="input password" className="M-steps-input" />,
+        description: "密码长度6~20位，任意字母或数字组合",
+        content: <Input.Password placeholder="input password" className="M-steps-input"/>,
     },
     {
         title: '下载',
         content: '处理完毕，可以进行下载',
     }
 ];
-const dataSource = [
-    { userID: '湖北省', userName: 54406, userStatus: 4793, userGroup: 1457, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '广东省', userName: 1294, userStatus: 409, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '河南省', userName: 1212, userStatus: 390, userGroup: 13, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '浙江省', userName: 1162, userStatus: 428, userGroup: 0, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '湖南省', userName: 1001, userStatus: 417, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '浙江省', userName: 1162, userStatus: 428, userGroup: 0, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '湖南省', userName: 1001, userStatus: 417, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '浙江省', userName: 1162, userStatus: 428, userGroup: 0, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '湖南省', userName: 1001, userStatus: 417, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '浙江省', userName: 1162, userStatus: 428, userGroup: 0, phone: '2020-02-15 19:52:02',description: 1457, },
-    { userID: '湖南省', userName: 1001, userStatus: 417, userGroup: 2, phone: '2020-02-15 19:52:02',description: 1457, },
-]
 
 const columns = [
-    { title: 'userID', dataIndex: 'userID', key: 'userID', },
-    { title: 'userName', dataIndex: 'userName', key: 'userName', },
-    { title: 'userStatus', dataIndex: 'userStatus', key: 'userStatus', },
-    { title: 'userGroup', dataIndex: 'userGroup', key: 'userGroup', },
-    { title: 'phone', dataIndex: 'phone', key: 'phone', },
-    { title: 'description', dataIndex: 'description', key: 'description', },
+    {title: 'userID', dataIndex: 'userID'},
+    {title: 'userName', dataIndex: 'userName'},
+    {title: 'userStatus', dataIndex: 'userStatus'},
+    {title: 'userGroup', dataIndex: 'userGroup'},
+    {title: 'phone', dataIndex: 'phone'},
+    {title: 'description', dataIndex: 'description'},
     {
         title: 'action',
         dataIndex: 'action',
-        key: 'action',
         render: (_, record) =>
             (
                 <div>
@@ -77,11 +66,13 @@ const columns = [
         width: 180
     },
 ]
+
 class User extends Component {
     // 那里有状态，就在哪里操作状态
     state = {
         selectedRowKeys: [],
-        loading: false,
+        dataSource: [],
+        loading: true,
         treeData: [],
         total: 0,
         pageNum: 1,
@@ -92,40 +83,48 @@ class User extends Component {
         current: 0 //步骤条进度控制
     };
 
+    componentDidMount() {
+        getUserTable().then(res => {
+            this.setState({dataSource: res.data.list, loading: false})
+        })
+    }
+    getRow (e) {
+        console.log(e)
+    }
     addColumn = (column) => {
         this.setState({column})
     }
-    lock=()=>{
-        if (this.state.selectedRowKeys.length===0){
+    lock = () => {
+        if (this.state.selectedRowKeys.length === 0) {
             message.warning('请选择要操作的对象');
-        }else{
+        } else {
             message.success('执行成功');
         }
 
     }
-    unlock=()=>{
-        if (this.state.selectedRowKeys.length===0){
+    unlock = () => {
+        if (this.state.selectedRowKeys.length === 0) {
             message.warning('请选择要操作的对象');
         }
     }
-    importcus=()=>{
+    importcus = () => {
 
         message.warning('一级节点下不能添加数据');
     }
-    exportcus=()=>{
-        this.setState({visible:true})
+    exportcus = () => {
+        this.setState({visible: true})
     }
-    auth=()=>{
-        if (this.state.selectedRowKeys.length===0){
+    auth = () => {
+        if (this.state.selectedRowKeys.length === 0) {
             message.warning('请选择要操作的对象');
         }
     }
-    config=()=>{
-        if (this.state.selectedRowKeys.length===0){
+    config = () => {
+        if (this.state.selectedRowKeys.length === 0) {
             message.warning('请选择要操作的对象');
         }
     }
-    ad=()=>{
+    ad = () => {
         message.warning('一级节点下不能添加数据');
     }
     showModal = () => {
@@ -134,10 +133,11 @@ class User extends Component {
         });
     };
     handleCancel = () => {
-        this.setState({ visible: false });
+        this.setState({visible: false});
     };
+
     render() {
-        const {loading, selectedRowKeys, treeData,visible} = this.state;
+        const {loading, selectedRowKeys, treeData, visible, dataSource} = this.state;
         const rowSelection = {
             selectedRowKeys,
             onChange: this.onSelectChange,
@@ -146,7 +146,7 @@ class User extends Component {
         const {current} = this.state
 
         const next = () => {
-            this.setState({current:current+1})
+            this.setState({current: current + 1})
 
         };
         return (
@@ -155,21 +155,30 @@ class User extends Component {
                     <Sider><Demo isShowSearch={false} title='用户目录' addColumn={this.addColumn}/></Sider>
                     <Content>
                         <div className='tableTitle'>
-                            <Button type="primary" size="small" onClick={this.addColumn} icon={<PlusOutlined />} style={{backgroundColor: '#84C93C'}}><Link to='/addPage/'>添加</Link></Button>
+                            <Button type="primary" size="small" onClick={this.addColumn} icon={<PlusOutlined/>}
+                                    style={{backgroundColor: '#84C93C'}}><Link to='/addPage/'>添加</Link></Button>
                             <Popconfirm title="确认删除已选内容?" okText="是" cancelText="否"
                                         onConfirm={this.handleDeleteAll}>
-                                <Button type="default" size="small" icon={<DeleteOutlined />} style={{backgroundColor: '#E67A5C'}} danger disabled={!hasSelected}
+                                <Button type="default" size="small" icon={<DeleteOutlined/>}
+                                        style={{backgroundColor: '#E67A5C'}} danger disabled={!hasSelected}
                                         loading={loading}>
                                     删除
                                 </Button>
                             </Popconfirm>
-                            <Button type="primary" size="small" style={{backgroundColor: '#F2AE00'}} icon={<LockOutlined />} onClick={this.lock}>锁定</Button>
-                            <Button type="primary" size="small" style={{backgroundColor: '#439EDB'}} icon={<UnlockOutlined />} onClick={this.unlock}>解锁</Button>
-                            <Button type="primary" size="small" style={{backgroundColor: '#FBA1D0'}} icon={<ImportOutlined />} onClick={this.importcus}>导入</Button>
-                            <Button type="primary" size="small" style={{backgroundColor: '#FBA1D0'}} icon={<ExportOutlined />} onClick={this.exportcus}>导出</Button>
-                            <Button type="primary" size="small" style={{backgroundColor: '#30B29D'}} icon={<KeyOutlined />} onClick={this.auth}>授权</Button>
-                            <Button type="primary" size="small" style={{backgroundColor: '#988DB6'}} icon={<ToolOutlined />} onClick={this.config}>策略绑定</Button>
-                            <Button type="primary" size="small" style={{backgroundColor: '#188D8F'}} icon={<ImportOutlined />} onClick={this.ad}>AD域导入</Button>
+                            <Button type="primary" size="small" style={{backgroundColor: '#F2AE00'}}
+                                    icon={<LockOutlined/>} onClick={this.lock}>锁定</Button>
+                            <Button type="primary" size="small" style={{backgroundColor: '#439EDB'}}
+                                    icon={<UnlockOutlined/>} onClick={this.unlock}>解锁</Button>
+                            <Button type="primary" size="small" style={{backgroundColor: '#FBA1D0'}}
+                                    icon={<ImportOutlined/>} onClick={this.importcus}>导入</Button>
+                            <Button type="primary" size="small" style={{backgroundColor: '#FBA1D0'}}
+                                    icon={<ExportOutlined/>} onClick={this.exportcus}>导出</Button>
+                            <Button type="primary" size="small" style={{backgroundColor: '#30B29D'}}
+                                    icon={<KeyOutlined/>} onClick={this.auth}>授权</Button>
+                            <Button type="primary" size="small" style={{backgroundColor: '#988DB6'}}
+                                    icon={<ToolOutlined/>} onClick={this.config}>策略绑定</Button>
+                            <Button type="primary" size="small" style={{backgroundColor: '#188D8F'}}
+                                    icon={<ImportOutlined/>} onClick={this.ad}>AD域导入</Button>
                             <span className="deleteTips">
                         {hasSelected ? `选择了 ${selectedRowKeys.length} 项` : ''}
                     </span>
@@ -181,7 +190,7 @@ class User extends Component {
                             >
                                 <Steps current={current} className="M-steps">
                                     {steps.map(item => (
-                                        <Step key={item.title} title={item.title} description={item.description} />
+                                        <Step key={item.title} title={item.title} description={item.description}/>
                                     ))}
                                 </Steps>
                                 <div className="steps-content">
@@ -203,7 +212,10 @@ class User extends Component {
                             </Modal>
                             <ConditionalSearch/>
                         </div>
-                        <TableTest columns={columns} dataSource={dataSource}/>
+                        <Table columns={columns} dataSource={dataSource} onSelect={(e) => this.getRow(e)}
+                               loading={loading} rowSelection={{
+                            type: 'checkbox',
+                        }}/>
                     </Content>
                 </Layout>
             </Layout>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ConditionalSearch from '../../components/ConditionalSearch'
-import {Layout, Button, message, Popconfirm} from "antd";
+import {Layout, message, Popconfirm} from "antd";
+import { Button } from 'usue-cc';
 import {Link} from "react-router-dom";
 import {
     DeleteOutlined, EditOutlined, EyeOutlined, KeyOutlined, PlayCircleOutlined,
@@ -16,16 +17,15 @@ import './usergroup.less'
 const {Sider, Content} = Layout;
 
 const columns = [
-    {title: 'userName', dataIndex: 'userName', key: 'userName',render:(text,record)=>{
+    {title: 'userName', dataIndex: 'userName',render:(text,record)=>{
         return <span title={text}>{text}</span>
         }},
-    {title: 'description', dataIndex: 'description', key: 'description',render:(text,record)=>{
+    {title: 'description', dataIndex: 'description',render:(text,record)=>{
             return <span title={text}>{text}</span>
         }},
     {
         title: 'action',
         dataIndex: 'action',
-        key: 'action',
         render: (_, record) =>
             (
                 <div>
@@ -50,8 +50,8 @@ class UserGroup extends Component {
         loading: true,
         dataSource: []
     }
-    addColumn = (column) => {
-        this.setState({column})
+    addColumn = () => {
+
     }
     auth = () => {
         if (this.state.selectedRowKeys.length === 0) {
@@ -100,7 +100,6 @@ class UserGroup extends Component {
                     <TableTest dataSource={dataSource} columns={columns} loading={loading}/>
                 </Content>
             </Layout>
-
         );
     }
 }

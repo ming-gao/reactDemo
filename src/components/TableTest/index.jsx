@@ -13,6 +13,10 @@ class TableTest extends Component {
         console.log(this.props.dataSource)
     }
 
+    getRow=(e)=>{
+        // this.props.getRow(record, selected, selectedRows, nativeEvent)
+        console.log('选中行', e)
+    }
     render() {
         const {columns, dataSource,loading} = this.props
         const pagination = {
@@ -26,7 +30,7 @@ class TableTest extends Component {
         }
 
         return (
-            <Table columns={columns} dataSource={dataSource} loading={loading} bordered scroll={{y: 340}}
+            <Table columns={columns} dataSource={dataSource} onSelect={(e)=>this.getRow(e)} loading={loading} bordered scroll={{y: 340}}
                    rowClassName={(record, index) => {
                        let className = 'odd'
                        if (index % 2 === 1) className = 'even'

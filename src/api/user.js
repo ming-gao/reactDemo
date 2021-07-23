@@ -13,8 +13,19 @@ function getGroupTable(){
         })
     })
 }
+function getUserTable(){
+    return new Promise((resolve, reject) => {
+        request("get",'/user').then(res => {
+            resolve (res);
+        },error => {
+            console.log("网络异常~",error);
+            reject(error)
+        })
+    })
+}
+
 
 export {
-    getGroupTable
+    getGroupTable,getUserTable
 }
 

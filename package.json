@@ -82,6 +82,7 @@
     "terser-webpack-plugin": "4.2.3",
     "ts-pnp": "1.2.0",
     "url-loader": "4.1.1",
+    "usue-cc": "file:locallib/usue-cc-1.0.0.tgz",
     "web-vitals": "^1.1.2",
     "webpack": "4.44.2",
     "webpack-dev-server": "3.11.1",
@@ -186,7 +187,4 @@
     "webpack-cli": "^4.7.2"
   },
   "proxy": "https://www.fastmock.site/mock/5416eac3c43641097ec8869fabd491f6/reactdemo"
-
-
-
 }
