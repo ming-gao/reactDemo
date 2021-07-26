@@ -96,7 +96,7 @@ class User extends Component {
     }
     lock = () => {
         if (this.state.selectedRowKeys.length === 0) {
-            message.warning('请选择要操作的对象');
+            message.warning('请选择要操作的对象')
         } else {
             message.success('执行成功');
         }

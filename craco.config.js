@@ -12,7 +12,7 @@ module.exports = {
                             '@font-size-base': '14px',
                             // 颜色系列
                             // 按钮
-                            '@btn-default-color': '#fff',
+                            // '@btn-default-color': '#fff',
                             '@btn-padding-horizontal-sm': '8px',
                             '@btn-border-radius-sm': '3px',
                             '@btn-font-size-sm': '12px',
