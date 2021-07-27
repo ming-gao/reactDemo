@@ -1,0 +1,23 @@
+.content {
+    font-size: 0.9375rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: black;
+    line-height: 1.5625rem;
+}
+.hidden-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /*! autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+    overflow: hidden;
+}
+.content-btn {
+    font-size: 0.875rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 600;
+    color: #a27438;
+    line-height: 1.5rem;
+    margin-top: 0.3125rem;
+}

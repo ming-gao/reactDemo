@@ -12,6 +12,7 @@ import {
 
 import DrawerSearch from "../../components/DrawerSearch";
 import CollapseDemo from "../../components/CollapseDemo";
+import  TextContainer from "../../components/CollapseDemo/test"
 
 import './adduser.less'
 import {Link} from "react-router-dom";
@@ -36,6 +37,8 @@ const formItemLayout = {
     },
 };
 
+
+const content='这意味着变量$highlight-color现在的值是#F90。任何可以用作css属性值的赋值都 可以用作sass的变量值，甚至是以空格分割的多个属性值，如$basic-border: 1px solid black;，或以逗号分割的多个属性值，如$plain-font: "Myriad Pro"、Myriad、"Helvetica Neue"、Helvetica、"Liberation Sans"、Arial和sans-serif; sans-serif;。这时变 量还没有生效，除非你引用这个变量——我们很快就会了解如何引用。与CSS属性不同，变量可以在css规则块定义之外存在。当变量定义在css规则块内，那么该变量只能在此规则块内使用。如果它们出现在任何形式的{...}块中（如@media或者@font-face块），情况也是如此：'
 const options = [
     { label: '男', value: 'male' },
     { label: '女', value: 'female' },
@@ -45,6 +48,14 @@ const options2 = [
     { label: '是', value: 'true' },
     { label: '否', value: 'false' },
 ];
+
+const panel = [
+    {id:'1',text:"21332"},
+    {id:'2',text:"43123"},
+    {id:'3',text:"1242"},
+    {id:'4',text:"12414312"},
+    {id:'5',text:"1432"},
+]
 
 class AddUser extends Component {
     state = {
@@ -188,10 +199,10 @@ class AddUser extends Component {
                 <Card title="认证信息" className="P-card P-card-authinfo" bordered={false}>
                     <Form {...formItemLayout}>
                         <Form.Item>
-                            <CollapseDemo />
+                            <CollapseDemo panelData={panel}/>
+                            {/*<TextContainer content={content}/>*/}
                         </Form.Item>
                     </Form>
-
                 </Card>
             </div>
         );

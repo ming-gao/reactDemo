@@ -1,58 +1,51 @@
 import React, {Component} from 'react';
-import {Collapse, Radio} from 'antd';
+import {Radio, Row, Col,Button} from 'antd';
+
+import {DownOutlined, UpOutlined} from '@ant-design/icons';
 
 import './CollapseDemo.less'
 
-const {Panel} = Collapse;
 
-const options = [
-    {label: 'Apple', value: 'Apple'},
-    {label: 'Pear', value: 'Pear'},
-];
-const options2 = [
-    {label: 'Apple', value: 'Apple'},
-    {label: 'Pear', value: 'Pear'},
-    {label: 'Orange', value: 'Orange'},
-];
+function onChange(e) {
+    console.log(`radio checked:${e.target.value}`);
+}
 
 class CollapseDemo extends Component {
     state = {
-        value: '',
-        value2: ''
-    }
-    onChange = e => {
-        console.log('radio4 checked', e.target.value);
-        this.setState({
-            value: e.target.value,
-        });
-    };
+        isCollapsed:true,
 
+    }
+    isElementCollision(){
+
+    }
+    clickToCollapse=()=>{
+        const {isCollapsed} = this.state;
+        this.setState({isCollapsed:!isCollapsed})
+        console.log('123')
+    }
     render() {
+        const {panelData} = this.props
+        const {isCollapsed} = this.state;
+        let panel = panelData.map((item) => (
+            <Col className="gutter-row" xs={12} sm={12} md={12} lg={12} xl={12}>
+                <Radio.Button value={item.text}>
+                    {item.text}
+                </Radio.Button>
+            </Col>
+        ))
         return (
-            <Collapse defaultActiveKey={['1']} ghost className="M-collapse" expandIconPosition="right">
-                <Panel header={(
-                    <div>
-                        <label htmlFor="">认证方式策略 ：</label>
-                        <Radio.Group
-                            className="M-radio-button"
-                            options={options}
-                            onChange={this.onChange}
-                            value={this.state.value}
-                            optionType="button"
-                            buttonStyle="solid"
-                        />
-                    </div>
-                )} key="1">
-                    <Radio.Group
-                        className="M-radio-button-inner"
-                        options={options2}
-                        onChange={this.onChange}
-                        value={this.state.value2}
-                        optionType="button"
-                        buttonStyle="solid"
-                    />
-                </Panel>
-            </Collapse>
+            <Row>
+                <Col className={isCollapsed?'collapsed':'expanded'} style={{overflow:'hidden'}} >
+                    <Radio.Group onChange={onChange}  buttonStyle="solid">
+                        <Row>
+                            {panel}
+                        </Row>
+                    </Radio.Group>
+                </Col>
+                <Col >
+                    <Button onClick={()=>this.clickToCollapse()} type="default" shape="circle" icon={isCollapsed?<DownOutlined />:<UpOutlined />} />
+                </Col>
+            </Row>
         );
     }
 }
