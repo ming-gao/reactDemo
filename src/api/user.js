@@ -23,9 +23,18 @@ function getUserTable(){
         })
     })
 }
-
+function getPanelData(){
+    return new Promise((resolve, reject) => {
+        request("get",'/formpanel').then(res => {
+            resolve (res);
+        },error => {
+            console.log("网络异常~",error);
+            reject(error)
+        })
+    })
+}
 
 export {
-    getGroupTable,getUserTable
+    getGroupTable,getUserTable,getPanelData
 }
 
