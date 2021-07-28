@@ -1,27 +1,25 @@
 import React, {Component} from 'react';
 import PubSub from 'pubsub-js'
-import {Button, Popconfirm, Table, Input, Space, Modal, message,Steps, Collapse } from 'antd';
-import {Router, Route, Link} from 'react-router-dom'
+import {Button, Popconfirm, Table, Input, Space, message,Steps, Collapse } from 'antd';
 import 'antd/dist/antd.css'
 import Highlighter from 'react-highlight-words';
-import {EyeInvisibleOutlined, EyeTwoTone ,SearchOutlined,PlusOutlined,DeleteOutlined,LockOutlined,UnlockOutlined,ImportOutlined,ExportOutlined,KeyOutlined,ToolOutlined,} from '@ant-design/icons';
-import ConditionalSearch from '../ConditionalSearch'
+import {SearchOutlined} from '@ant-design/icons';
 
 import './index.css'
 
-const { Step } = Steps;
-const { Panel } = Collapse;
-const steps = [
-    {
-        title: '设置密码',
-        description:"密码长度6~20位，任意字母或数字组合",
-        content: <Input.Password placeholder="input password" className="M-steps-input" />,
-    },
-    {
-        title: '下载',
-        content: '处理完毕，可以进行下载',
-    }
-];
+// const { Step } = Steps;
+// const { Panel } = Collapse;
+// const steps = [
+//     {
+//         title: '设置密码',
+//         description:"密码长度6~20位，任意字母或数字组合",
+//         content: <Input.Password placeholder="input password" className="M-steps-input" />,
+//     },
+//     {
+//         title: '下载',
+//         content: '处理完毕，可以进行下载',
+//     }
+// ];
 
 const tableData = [];
 for (let i = 0; i < 10; i++) {

@@ -3,10 +3,7 @@ import ConditionalSearch from '../../components/ConditionalSearch'
 import {Layout, message, Popconfirm} from "antd";
 import { Button } from 'usue-cc';
 import {Link} from "react-router-dom";
-import {
-    DeleteOutlined, EditOutlined, EyeOutlined, KeyOutlined, PlayCircleOutlined,
-    PlusOutlined, ToolOutlined, VideoCameraOutlined,
-} from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, EyeOutlined, KeyOutlined, PlusOutlined, ToolOutlined,} from "@ant-design/icons";
 import {getGroupTable} from '../../api/user'
 
 import NewTree from '../../components/NewTree'

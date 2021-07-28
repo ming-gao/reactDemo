@@ -119,10 +119,10 @@ export function put(url, data = {}) {
 }
 
 //统一接口处理，返回数据
-export default function (fecth, url, param) {
-    let _data = "";
+export default function (fetch, url, param) {
+    // let _data = "";
     return new Promise((resolve, reject) => {
-        switch (fecth) {
+        switch (fetch) {
             case "get":
                 console.log("begin a get request,and url:", url);
                 get(url, param)

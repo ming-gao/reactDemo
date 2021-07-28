@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Card, Col, Row, Button,  Skeleton, Switch } from 'antd';
+import { Card, Col, Row, Button } from 'antd';
 
 import './digitalCard.css'
 

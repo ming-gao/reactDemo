@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import { Table, Tag, Space } from 'antd';
+import { Table, Space } from 'antd';
 import './Tablebasic.styl'
 
-const { Column, ColumnGroup } = Table;
+const { Column } = Table;
 
 const data = [
     {
@@ -57,8 +57,8 @@ class Tablebasic extends Component {
                     key="action"
                     render={(text, record) => (
                         <Space size="middle">
-                            <a>Invite {record.lastName}</a>
-                            <a>Delete</a>
+                            <a href="/#">Invite {record.lastName}</a>
+                            <a href="/#">Delete</a>
                         </Space>
                     )}
                 />

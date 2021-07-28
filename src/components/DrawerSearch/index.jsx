@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Drawer,Button} from 'usue-cc';
-import {MenuUnfoldOutlined, CaretRightOutlined} from '@ant-design/icons';
 
 class DrawerSearch extends Component {
     state = {

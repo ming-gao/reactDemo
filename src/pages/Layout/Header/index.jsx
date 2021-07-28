@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import { Icon, Menu, Dropdown, Modal, Layout, Avatar } from "antd";
-import { Link } from "react-router-dom";
+import { Menu, Layout } from "antd";
+
 
 import {UploadOutlined, UserOutlined, VideoCameraOutlined} from "@ant-design/icons";
-
-const { Header, Content } = Layout;
 
 class LayoutHeader extends Component {
     render() {

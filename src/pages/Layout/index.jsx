@@ -12,6 +12,7 @@ import Demo from '../Generators'
 import UserGroup from '../UserGroup'
 import User from '../User'
 import AddUser from '../Adduser'
+import Generators from '../Generators'
 import './index.less'
 
 const {Header, Sider, Content} = Layout;
@@ -113,6 +114,7 @@ class Main extends React.Component {
                                 <Route path="/usergroup" component={UserGroup}/>
                                 <Route path="/user" component={User}/>
                                 <Route path="/adduser" component={AddUser}/>
+                                <Route path="/generators" component={Generators}/>
                             </Switch>
                         </Content>
                     </Layout>

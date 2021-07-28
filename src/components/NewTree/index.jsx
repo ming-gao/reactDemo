@@ -1,13 +1,6 @@
 import React, {Component} from 'react';
 import { Tree } from 'antd';
-import {
-    DownOutlined,
-    FrownOutlined,
-    SmileOutlined,
-    MehOutlined,
-    FrownFilled, UserOutlined,
-} from '@ant-design/icons';
-
+import {DownOutlined, UserOutlined,} from '@ant-design/icons';
 
 const treeData = [
     {

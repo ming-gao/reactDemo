@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Button, Modal, Space, message} from "antd";
-import { PlusOutlined,DeleteOutlined,LockOutlined,UnlockOutlined,ImportOutlined,ExportOutlined,KeyOutlined,ToolOutlined, } from '@ant-design/icons';
+import {Button, message} from "antd";
+import { PlusOutlined } from '@ant-design/icons';
 
 import './modalbasic.styl'
 

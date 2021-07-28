@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Layout, Menu } from 'antd';
-import { Redirect, withRouter, Route, Switch } from "react-router-dom";
+import { Layout } from 'antd';
+import { Redirect, Route, Switch } from "react-router-dom";
 import routeList from "../../../router/routeMap";
 import DocumentTitle from "react-document-title";
 import { CSSTransition, TransitionGroup } from "react-transition-group";

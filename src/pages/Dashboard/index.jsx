@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import { Router, Route, Link } from 'react-router'
-import { Row, Col, Statistic, Card } from 'antd';
+import { Row, Col, Card } from 'antd';
 import DigitalCard from '../../components/DigitalCard'
 import Echartsdemo from '../../components/Echartsdemo'
 import Tablebasic from '../../components/Tablebasic'
 import Scrollmessage from '../../components/Scrollmessage'
-import Demo from "../Generators"
-import { SoundOutlined, createFromIconfontCN  } from '@ant-design/icons';
+import { SoundOutlined  } from '@ant-design/icons';
 
 import './Dashboard.css'
 
@@ -144,9 +142,9 @@ const optionPie = {
     ]
 }
 
-const IconFont = createFromIconfontCN({
-    scriptUrl: '//at.alicdn.com/t/font_2662677_9x0hbl9my5.js',
-});
+// const IconFont = createFromIconfontCN({
+//     scriptUrl: '//at.alicdn.com/t/font_2662677_9x0hbl9my5.js',
+// });
 
 class Dashboard extends Component {
     componentDidMount() {

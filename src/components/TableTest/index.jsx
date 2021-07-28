@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Table } from "antd";
-import {Router, Route, Link} from 'react-router-dom'
 
 import './TableTest.css'
 

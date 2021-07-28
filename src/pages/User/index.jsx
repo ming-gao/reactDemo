@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Input, Layout, message, Modal, Popconfirm, Steps, Table} from "antd";
 import {Button} from 'usue-cc';
 // import Tableuser from "../../components/Tableuser";
-import TableTest from "../../components/TableTest";
+
 import Demo from '../../components/Tree'
 import ConditionalSearch from "../../components/ConditionalSearch";
 import {
@@ -137,11 +137,11 @@ class User extends Component {
     };
 
     render() {
-        const {loading, selectedRowKeys, treeData, visible, dataSource} = this.state;
-        const rowSelection = {
-            selectedRowKeys,
-            onChange: this.onSelectChange,
-        };
+        const {loading, selectedRowKeys, visible, dataSource} = this.state;
+        // const rowSelection = {
+        //     selectedRowKeys,
+        //     onChange: this.onSelectChange,
+        // };
         const hasSelected = selectedRowKeys.length > 1;
         const {current} = this.state
 
