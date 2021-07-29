@@ -71,7 +71,7 @@ const menuList=[
         icon: '',
         children:[
             {
-                key: '1',
+                key: '/realtimeCov',
                 name:'实时会话',
                 icon: '',
             },

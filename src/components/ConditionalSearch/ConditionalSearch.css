@@ -16,6 +16,4 @@
 .ant-collapse-borderless > .ant-collapse-item > .ant-collapse-content > .ant-btn {
     margin-left: 15px !important;
 }
-.ant-collapse-borderless > .ant-collapse-item > .ant-collapse-content .fr-container {
-    height: 38px;
-}
+

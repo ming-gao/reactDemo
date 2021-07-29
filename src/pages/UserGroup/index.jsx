@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ConditionalSearch from '../../components/ConditionalSearch'
 import {Layout, message, Popconfirm} from "antd";
 import { Button } from 'usue-cc';
 import {Link} from "react-router-dom";
@@ -8,6 +7,7 @@ import {getGroupTable} from '../../api/user'
 
 import NewTree from '../../components/NewTree'
 import TableTest from "../../components/TableTest";
+import ConditionalSearch from '../../components/ConditionalSearch'
 
 import './usergroup.less'
 
@@ -41,6 +41,84 @@ const columns = [
     },
 ]
 
+const schema={
+    "type": "object",
+    "properties": {
+        "input_kRYPJ2": {
+            "title": "输入框",
+            "type": "string",
+            "props": {}
+        },
+        "input_m4jmti": {
+            "title": "输入框",
+            "type": "string",
+            "props": {}
+        },
+        "date_4hFxMb": {
+            "title": "日期选择",
+            "type": "string",
+            "format": "date"
+        },
+        "input_h-00QT": {
+            "title": "输入框",
+            "type": "string",
+            "props": {}
+        },
+        "input_n4Larp": {
+            "title": "输入框",
+            "type": "string",
+            "props": {}
+        },
+        "input_X7K_JO": {
+            "title": "输入框",
+            "type": "string",
+            "props": {}
+        },
+        "input_lvNzm6": {
+            "title": "输入框",
+            "type": "string",
+            "props": {}
+        },
+        "input_Cjlaul": {
+            "title": "输入框",
+            "type": "string",
+            "props": {}
+        },
+        "select_U6ArhO": {
+            "title": "单选",
+            "type": "string",
+            "enum": [
+                "a",
+                "b",
+                "c"
+            ],
+            "enumNames": [
+                "早",
+                "中",
+                "晚"
+            ],
+            "widget": "select"
+        },
+        "select_CmjMcl": {
+            "title": "单选",
+            "type": "string",
+            "enum": [
+                "a",
+                "b",
+                "c"
+            ],
+            "enumNames": [
+                "早",
+                "中",
+                "晚"
+            ],
+            "widget": "select"
+        }
+    },
+    "column": 3,
+    "labelWidth": 80,
+    "displayType": "row"
+}
 class UserGroup extends Component {
     state = {
         selectedRowKeys: [],
@@ -92,7 +170,7 @@ class UserGroup extends Component {
                         <span className="deleteTips">
                         {hasSelected ? `选择了 ${selectedRowKeys.length} 项` : ''}
                     </span>
-                        <ConditionalSearch/>
+                        <ConditionalSearch schema={schema}/>
                     </div>
                     <TableTest dataSource={dataSource} columns={columns} loading={loading}/>
                 </Content>

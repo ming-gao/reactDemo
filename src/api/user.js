@@ -34,7 +34,18 @@ function getPanelData(){
     })
 }
 
+function searchTable(data){
+    return new Promise((resolve, reject) => {
+        request("post",'/search',data).then(res => {
+            resolve (res);
+        },error => {
+            console.log("网络异常~",error);
+            reject(error)
+        })
+    })
+}
+
 export {
-    getGroupTable,getUserTable,getPanelData
+    getGroupTable,getUserTable,getPanelData,searchTable
 }
 

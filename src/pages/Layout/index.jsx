@@ -13,6 +13,7 @@ import UserGroup from '../UserGroup'
 import User from '../User'
 import AddUser from '../Adduser'
 import Generators from '../Generators'
+import RealtimeCov from "../RealtimeCov";
 import './index.less'
 
 const {Header, Sider, Content} = Layout;
@@ -115,6 +116,7 @@ class Main extends React.Component {
                                 <Route path="/user" component={User}/>
                                 <Route path="/adduser" component={AddUser}/>
                                 <Route path="/generators" component={Generators}/>
+                                <Route path="/realtimecov" component={RealtimeCov}/>
                             </Switch>
                         </Content>
                     </Layout>
