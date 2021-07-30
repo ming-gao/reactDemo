@@ -31,6 +31,7 @@
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "echarts": "^5.1.2",
+    "editable-tree-antd": "^1.0.9",
     "element-resize-event": "^3.0.6",
     "eslint": "^7.11.0",
     "eslint-config-react-app": "^6.0.0",

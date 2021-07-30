@@ -1,11 +1,12 @@
 .M-digitalCard {
   min-width: 865px;
   min-height: 235px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 .M-digitalCard .ant-card {
   padding: 15px;
   min-height: 235px;
+  height: 235px;
   border-radius: 18px;
 }
 .M-digitalCard .ant-card .ant-card-head {

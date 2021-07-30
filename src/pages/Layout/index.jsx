@@ -105,7 +105,8 @@ class Main extends React.Component {
                         <Content
                             className="site-layout-background"
                             style={{
-                                minHeight: 280,
+                                height: '100%',
+
                             }}
                         >
                             <Switch>

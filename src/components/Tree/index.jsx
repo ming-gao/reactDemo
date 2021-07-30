@@ -182,7 +182,6 @@ class Demo extends Component {
                 if (item.children) {
                     return {title, key: item.key, children: loop(item.children)};
                 }
-
                 return {
                     title,
                     key: item.key,
