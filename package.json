@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^12.8.3",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
+    "@ztree/ztree_v3": "^3.5.46",
     "ali-react-table": "^2.6.0",
     "antd": "^4.16.6",
     "axios": "^0.21.1",
@@ -43,6 +44,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-testing-library": "^3.9.2",
     "eslint-webpack-plugin": "^2.5.2",
+    "expose-loader": "^1.0.3",
     "file-loader": "6.1.1",
     "form-render": "^1.5.8",
     "fr-generator": "^2.4.6",
@@ -53,9 +55,11 @@
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
+    "jquery": "^3.6.0",
     "less": "^4.1.1",
     "mini-css-extract-plugin": "0.11.3",
     "moment": "^2.29.1",
+    "nanoid": "^3.1.23",
     "optimize-css-assets-webpack-plugin": "5.0.4",
     "pnp-webpack-plugin": "1.6.4",
     "postcss-flexbugs-fixes": "4.2.1",
@@ -187,7 +191,8 @@
     "react-router": "^5.2.0",
     "speed-measure-webpack-plugin": "^1.5.0",
     "stylus": "^0.54.8",
-    "webpack-cli": "^4.7.2"
+    "webpack-cli": "^4.7.2",
+    "ztree-for-react": "^1.2.0"
   },
   "proxy": "https://www.fastmock.site/mock/5416eac3c43641097ec8869fabd491f6/reactdemo"
 }

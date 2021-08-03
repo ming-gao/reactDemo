@@ -111,6 +111,7 @@ module.exports = function (webpackEnv) {
                     ? {publicPath: '../../'}
                     : {},
             },
+
             {
                 loader: require.resolve('css-loader'),
                 options: cssOptions,

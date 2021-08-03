@@ -162,11 +162,14 @@
 // export default RealtimeCov;
 import React, {Component} from 'react';
 import TableUser from "../../components/Tableuser";
+import Tree from '../../components/EditTree'
+import TreeDemo from '../../components/EditTree/edit'
 
 class Real extends Component {
     render() {
         return (
             <div>
+                <TreeDemo/>
                 <TableUser/>
             </div>
         );
